@@ -1,0 +1,196 @@
+{
+  "project_info": {
+    "school_name": "The Study Home School",
+    "location": "Arrah, Bhojpur, Bihar, India",
+    "launch_session": "Academic Session 2027–28",
+    "grades": "Classes 1–5 (Primary School)",
+    "tagline": "Building Minds, Shaping Values.",
+    "brand_pillars": [
+      "Strong Academics",
+      "Confident English Communication",
+      "Digital Capability",
+      "Practical Intelligence"
+    ],
+    "target_audience": "Parents in Bhojpur, Bihar browsing primarily on Android mobile devices with moderate bandwidth, seeking affordable, high-quality, trustworthy primary education."
+  },
+  "design_archetype": {
+    "name": "Swiss-Educational Precision & Warm Trust",
+    "description": "Combines high-trust Swiss grid clarity with warm, approachable Indian educational storytelling. Avoids generic corporate templates or ultra-luxury elite vibes. Feels authentic, academically rigorous, and deeply welcoming for parents in Bihar.",
+    "emotional_tone": "Trustworthy, Inspiring, Grounded, Progressive, Accessible"
+  },
+  "color_palette": {
+    "primary": "#0756A5",
+    "primary_hover": "#054485",
+    "navy": "#123D62",
+    "navy_dark": "#0B2742",
+    "background_white": "#FFFFFF",
+    "background_light": "#F3F6FA",
+    "background_alt": "#EAF0F8",
+    "text_main": "#1E293B",
+    "text_muted": "#64748B",
+    "border_subtle": "#E2E8F0",
+    "accent_green": "#16A34A",
+    "accent_green_hover": "#15803D",
+    "accent_amber": "#D97706",
+    "accent_sky": "#0284C7",
+    "forbidden_colors": [
+      "#7351B7",
+      "#1B93A4",
+      "pure black (#000000)"
+    ]
+  },
+  "typography": {
+    "font_family_heading": "Plus Jakarta Sans, Inter, sans-serif",
+    "font_family_body": "Inter, system-ui, sans-serif",
+    "hierarchy": {
+      "h1_hero": "text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight",
+      "h2_section": "text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#123D62]",
+      "h3_card": "text-lg sm:text-xl lg:text-2xl font-semibold text-[#123D62]",
+      "h4_sub": "text-base sm:text-lg font-semibold text-[#0756A5]",
+      "body_text": "text-sm sm:text-base leading-relaxed text-[#1E293B]",
+      "caption_label": "text-xs font-semibold uppercase tracking-wider text-[#0756A5]"
+    }
+  },
+  "logo_and_brand_assets": {
+    "svg_logo_mark": "Custom crafted vector badge featuring a open book foundation, rising sun rays of enlightenment, and a stylized home roof structure in #0756A5 and #123D62 with golden gradient spark.",
+    "favicon": "SVG roof + open book favicon rendered in crisp vector format.",
+    "header_style": "Sticky header with glassmorphism backdrop-blur-md bg-white/90 border-b border-[#E2E8F0] z-50",
+    "announcement_bar": "Top banner with gradient bg-[#123D62] text-white text-xs sm:text-sm py-2 px-4 flex justify-between items-center"
+  },
+  "motion_and_interactions": {
+    "smooth_scroll": "Lenis smooth scroll engine initialized globally",
+    "hero_reveal": "Masked line-by-line stagger headline reveal with Framer Motion (initial hidden, animated upwards with easeOut cubic bezier)",
+    "scroll_reveal": "Framer Motion threshold-triggered scroll reveal (fade up 24px, spring 0.4s)",
+    "marquee": "Slow editorial text ticker (react-fast-marquee or CSS keyframes) featuring core pillars: English Fluency • Computer Literacy • Math Mastery • Character Values • Affordable Excellence",
+    "micro_interactions": "Subtle scale lift (hover: -translate-y-1 hover:shadow-lg transition-all duration-300), active button press effect",
+    "reduced_motion": "Respects prefers-reduced-motion media query by falling back to static opacities"
+  },
+  "layout_and_spacing": {
+    "container": "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
+    "section_padding": "py-12 sm:py-16 lg:py-24",
+    "grid_gap": "gap-6 sm:gap-8 lg:gap-10",
+    "bento_grid_hero": "grid grid-cols-1 md:grid-cols-12 gap-6 items-center",
+    "card_padding": "p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md bg-white transition-all"
+  },
+  "pages_structure": [
+    {
+      "page": "Home",
+      "route": "/",
+      "sections_count": 16,
+      "sections": [
+        "1. Announcement Bar (Session 2027-28 Admissions Opening & Date)",
+        "2. Signature Hero (Masked line reveal, badge, dual CTAs, stats ticker, classroom visual)",
+        "3. Four Philosophy Cards (Academic Rigor, English Voice, Tech Literacy, Moral Foundation)",
+        "4. Editorial Ribbon Marquee (Drifting core value phrases)",
+        "5. Grade Cards (Classes 1 to 5 breakdown with key learning outcomes & interactive tabs)",
+        "6. English & Communication Showcase (Phonics, Public speaking, Daily English drills)",
+        "7. Computer Education Spotlight (Hands-on labs, Coding basics, Digital safety)",
+        "8. Practical & Experiential Learning (STEM kits, Math lab, Science experiments)",
+        "9. Sports & Physical Well-being (Outdoor games, Agility, Yoga, Teamwork)",
+        "10. Curated Learning Resources & Library (Physical books, Activity worksheets)",
+        "11. Continuous Assessment & Progress Tracking (No stress tests, regular parent reports)",
+        "12. Values & Character Building (Ethics, Respect, Discipline, Community)",
+        "13. Parent Partnership & Open Door Policy (Regular PTMs, WhatsApp updates, Progress app)",
+        "14. Affordability & Transparent Fee Promise (No hidden charges, maximum value for Bihar families)",
+        "15. Frequently Asked Questions Preview (Interactive Accordion)",
+        "16. Final High-Conversion Admission CTA Banner (Direct Enquiry Form trigger & WhatsApp contact)"
+      ]
+    },
+    {
+      "page": "About Us",
+      "route": "/about",
+      "sections": ["School History & Vision", "Founder's Message", "Core Values", "Infrastructure & Safety", "Faculty Excellence"]
+    },
+    {
+      "page": "Academics",
+      "route": "/academics",
+      "sections": ["Curriculum Overview", "Pedagogy", "Subject Breakdown", "Academic Calendar 2027-28", "Learning Methodology"]
+    },
+    {
+      "page": "English & Communication",
+      "route": "/english-communication",
+      "sections": ["English Environment", "Phonics Program", "Public Speaking", "Vocabulary Building", "Parent Tips for Home"]
+    },
+    {
+      "page": "Computer Education",
+      "route": "/computer-education",
+      "sections": ["Digital Literacy Curriculum", "Computer Lab Setup", "Kid-Friendly Coding", "Digital Safety & Ethics"]
+    },
+    {
+      "page": "Experiential Learning",
+      "route": "/experiential-learning",
+      "sections": ["Hands-on STEM Projects", "Art & Craft Workshops", "Math Lab Activities", "Field Trips & Real-world Exposure"]
+    },
+    {
+      "page": "Sports & Activities",
+      "route": "/sports",
+      "sections": ["Sports Facilities", "Annual Sports Day", "Co-curricular Clubs", "Physical Fitness Routine"]
+    },
+    {
+      "page": "Assessment & Growth",
+      "route": "/assessment",
+      "sections": ["Evaluation System", "Child Progress Reports", "Competency Based Tests", "Parent Feedback Loop"]
+    },
+    {
+      "page": "Parent Partnership",
+      "route": "/parent-partnership",
+      "sections": ["Parent Involvement Framework", "PTM Schedule", "WhatsApp Communication", "Parent Workshops"]
+    },
+    {
+      "page": "Admissions",
+      "route": "/admissions",
+      "sections": ["Admission Process 2027-28", "Eligibility Criteria", "Fee Structure & Transparency", "Interactive Enquiry Form", "Document Checklist"]
+    },
+    {
+      "page": "FAQ",
+      "route": "/faq",
+      "sections": ["Comprehensive Searchable FAQs", "Categories: Admissions, Academics, Fees, Transport, Safety"]
+    },
+    {
+      "page": "Contact Us",
+      "route": "/contact",
+      "sections": ["Interactive Contact Form", "Arrah Campus Location Map & Address", "Phone & Email Details", "Visiting Hours"]
+    },
+    {
+      "page": "Privacy Policy",
+      "route": "/privacy-policy",
+      "sections": ["Data Privacy", "Form Submissions Protection", "Parental Rights"]
+    },
+    {
+      "page": "Terms & Conditions",
+      "route": "/terms",
+      "sections": ["Admission Terms", "School Code of Conduct", "Website Usage Policy"]
+    }
+  ],
+  "image_urls": {
+    "hero_classroom": "https://images.unsplash.com/photo-1719159381916-062fa9f435a6?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzR8MHwxfHNlYXJjaHwyfHxJbmRpYW4lMjBwcmltYXJ5JTIwc2Nob29sJTIwY2hpbGRyZW4lMjBjbGFzc3Jvb20lMjBsZWFybmluZ3xlbnwwfHx8fDE3OTM0NjI0NzJ8MA&ixlib=rb-4.1.0&q=85",
+    "students_reading": "https://images.unsplash.com/flagged/photo-1574097656146-0b43b7660cb6?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzR8MHwxfHNlYXJjaHwxfHxJbmRpYW4lMjBwcmltYXJ5JTIwc2Nob29sJTIwY2hpbGRyZW4lMjBjbGFzc3Jvb20lMjBsZWFybmluZ3xlbnwwfHx8fDE3OTM0NjI0NzJ8MA&ixlib=rb-4.1.0&q=85",
+    "students_uniform": "https://images.unsplash.com/photo-1572847748080-bac263fae977?crop=entropy&cs=srgb\u0026fm=jpg\u0026ixid=M3w3NTY2NzR8MHwxfHNlYXJjaHwzfHxJbmRpYW4lMjBwcmltYXJ5JTIwc2Nob29sJTIwY2hpbGRyZW4lMjBjbGFzc3Jvb20lMjBsZWFybmluZ3xlbnwwfHx8fDE3OTM0NjI0NzJ8MA\u0026ixlib=rb-4.1.0\u0026q=85",
+    "computer_lab": "https://images.unsplash.com/photo-1778489769184-45868633c527?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA3MDR8MHwxfHNlYXJjaHwxfHxJbmRpYW4lMjBzdHVkZW50cyUyMGNvbXB1dGVyJTIwbGFiJTIwbGVhcm5pbmd8ZW58MHx8fHwxNzkzNDYyNDcyfDA&ixlib=rb-4.1.0&q=85",
+    "computer_lab_alt": "https://images.unsplash.com/photo-1719159381981-1327b22aff9b?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA3MDR8MHwxfHNlYXJjaHwzfHxJbmRpYW4lMjBzdHVkZW50cyUyMGNvbXB1dGVyJTIwbGFiJTIwbGVhcm5pbmd8ZW58MHx8fHwxNzkzNDYyNDcyfDA&ixlib=rb-4.1.0&q=85",
+    "sports_playground": "https://images.unsplash.com/photo-1779418567660-6ebe9f68e315?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1OTV8MHwxfHNlYXJjaHw0fHxJbmRpYW4lMjBjaGlsZHJlbiUyMHNwb3J0cyUyMG91dGRvb3IlMjBwbGF5Z3JvdW5kJTIwYWN0aXZpdHl8ZW58MHx8fHwxNzkzNDYyNDcyfDA&ixlib=rb-4.1.0&q=85",
+    "sports_activity": "https://images.unsplash.com/photo-1779418567644-9de0deb440c2?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1OTV8MHwxfHNlYXJjaHwzfHxJbmRpYW4lMjBjaGlsZHJlbiUyMHNwb3J0cyUyMG91dGRvb3IlMjBwbGF5Z3JvdW5kJTIwYWN0aXZpdHl8ZW58MHx8fHwxNzkzNDYyNDcyfDA&ixlib=rb-4.1.0&q=85"
+  },
+  "interactive_features": {
+    "admission_modal": "Fast opening Dialog modal triggered by 'Admission Enquiry' CTA on top header, hero section, and sticky bottom mobile bar",
+    "whatsapp_float": "Fixed bottom-right WhatsApp quick chat button linking directly to school admission helpline",
+    "mobile_sticky_cta": "Fixed bottom CTA bar on mobile viewports for instant 1-tap admission enquiry",
+    "grade_tabs": "Interactive class filter tabs (Class 1, Class 2, Class 3, Class 4, Class 5) with custom curriculum highlights",
+    "faq_accordion": "Shadcn Accordion component for instant expandable FAQs with category filters",
+    "form_validation": "Form validation for student name, parent phone number (10-digit Indian standard), grade selection, and district location."
+  },
+  "testing_and_accessibility": {
+    "data_testid_convention": "All interactive elements MUST include explicit data-testid attributes in kebab-case (e.g. data-testid='nav-admission-btn', data-testid='enquiry-form-submit', data-testid='whatsapp-floating-btn')",
+    "touch_targets": "Minimum 44px x 44px tap targets for mobile convenience",
+    "contrast_ratio": "Text meets APCA / WCAG AA minimum 4.5:1 contrast against white (#FFFFFF) and light gray (#F3F6FA) backgrounds."
+  },
+  "instructions_to_main_agent": [
+    "Follow the 14-page route setup using React Router in JavaScript (.js/.jsx files).",
+    "Use Lenis smooth scrolling and Framer Motion for scroll triggers and hero line reveal animations.",
+    "Strictly adhere to the brand color palette (#0756A5 primary blue, #123D62 deep navy, #FFFFFF background, #F3F6FA light grey alternate).",
+    "Include data-testid attributes on ALL buttons, inputs, links, forms, and cards.",
+    "Implement the custom SVG logo mark for The Study Home School prominently in the header and footer.",
+    "Ensure 100% responsive performance across mobile (Android emphasis), tablet, and desktop viewports.",
+    "Use Sonner for toast notifications when user submits admission enquiry or contact forms."
+  ]
+}

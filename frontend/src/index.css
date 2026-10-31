@@ -1,0 +1,145 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --background: 0 0% 100%;
+        --foreground: 215 28% 17%;
+        --card: 0 0% 100%;
+        --card-foreground: 215 28% 17%;
+        --popover: 0 0% 100%;
+        --popover-foreground: 215 28% 17%;
+        --primary: 210 92% 34%;
+        --primary-foreground: 0 0% 100%;
+        --secondary: 214 40% 96%;
+        --secondary-foreground: 206 69% 23%;
+        --muted: 214 40% 96%;
+        --muted-foreground: 215 16% 47%;
+        --accent: 214 40% 96%;
+        --accent-foreground: 206 69% 23%;
+        --destructive: 0 84.2% 60.2%;
+        --destructive-foreground: 0 0% 98%;
+        --border: 214 32% 91%;
+        --input: 214 32% 91%;
+        --ring: 210 92% 34%;
+        --radius: 0.75rem;
+        --brand-blue: #0756A5;
+        --brand-navy: #123D62;
+        --brand-light: #F3F6FA;
+        --brand-green: #16A34A;
+        --brand-amber: #D97706;
+    }
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+    html {
+        scroll-behavior: smooth;
+    }
+    body {
+        @apply bg-background text-foreground;
+        font-family: "Inter", system-ui, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        overflow-x: hidden;
+    }
+    h1, h2, h3, h4, h5, h6 {
+        font-family: "Plus Jakarta Sans", "Inter", sans-serif;
+    }
+    ::selection {
+        background: #0756A5;
+        color: #fff;
+    }
+    :focus-visible {
+        outline: 3px solid #0756A5;
+        outline-offset: 2px;
+        border-radius: 4px;
+    }
+}
+
+@layer components {
+    .container-site {
+        @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+    }
+    .eyebrow {
+        @apply text-xs font-semibold uppercase tracking-[0.2em] text-[#0756A5];
+    }
+    .card-site {
+        @apply p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm bg-white transition-[box-shadow,transform] duration-300;
+    }
+    .card-site:hover {
+        @apply shadow-md -translate-y-1;
+    }
+}
+
+/* Editorial marquee */
+@keyframes marquee-drift {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+.marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee-drift 36s linear infinite;
+}
+.marquee-track:hover {
+    animation-play-state: paused;
+}
+
+/* Hero image slow zoom */
+@keyframes hero-drift {
+    from { transform: scale(1.02); }
+    to { transform: scale(1.1); }
+}
+.hero-img-drift {
+    animation: hero-drift 18s ease-in-out infinite alternate;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .marquee-track, .hero-img-drift {
+        animation: none !important;
+    }
+    html {
+        scroll-behavior: auto;
+    }
+    *, *::before, *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+    }
+}
+
+@layer base {
+    [data-debug-wrapper="true"] {
+        display: contents !important;
+    }
+    [data-debug-wrapper="true"] > * {
+        margin-left: inherit;
+        margin-right: inherit;
+        margin-top: inherit;
+        margin-bottom: inherit;
+        padding-left: inherit;
+        padding-right: inherit;
+        padding-top: inherit;
+        padding-bottom: inherit;
+        column-gap: inherit;
+        row-gap: inherit;
+        gap: inherit;
+        border-left-width: inherit;
+        border-right-width: inherit;
+        border-top-width: inherit;
+        border-bottom-width: inherit;
+        border-left-style: inherit;
+        border-right-style: inherit;
+        border-top-color: inherit;
+        border-bottom-color: inherit;
+        border-right-color: inherit;
+        border-left-color: inherit;
+        border-top-style: inherit;
+        border-bottom-style: inherit;
+        border-right-width: inherit;
+        border-left-width: inherit;
+    }
+}

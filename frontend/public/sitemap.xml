@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- NOTE: replace the preview domain with the production domain after deployment -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://study-home-edu--0ts7e6wq.preview.emergentagent.com/</loc></url>
+  <url><loc>https://study-home-edu--0ts7e6wq.preview.emergentagent.com/about</loc></url>
+  <url><loc>https://study-home-edu--0ts7e6wq.preview.emergentagent.com/academics</loc></url>
+  <url><loc>https://study-home-edu--0ts7e6wq.preview.emergentagent.com/english-communication</loc></url>
+  <url><loc>https://study-home-edu--0ts7e6wq.preview.emergentagent.com/computer-education</loc></url>
+  <url><loc>https://study-home-edu--0ts7e6wq.preview.emergentagent.com/experiential-learning</loc></url>
+  <url><loc>https://study-home-edu--0ts7e6wq.preview.emergentagent.com/sports</loc></url>
+  <url><loc>https://study-home-edu--0ts7e6wq.preview.emergentagent.com/assessment</loc></url>
+  <url><loc>https://study-home-edu--0ts7e6wq.preview.emergentagent.com/parent-partnership</loc></url>
+  <url><loc>https://study-home-edu--0ts7e6wq.preview.emergentagent.com/admissions</loc></url>
+  <url><loc>https://study-home-edu--0ts7e6wq.preview.emergentagent.com/faq</loc></url>
+  <url><loc>https://study-home-edu--0ts7e6wq.preview.emergentagent.com/contact</loc></url>
+  <url><loc>https://study-home-edu--0ts7e6wq.preview.emergentagent.com/privacy-policy</loc></url>
+  <url><loc>https://study-home-edu--0ts7e6wq.preview.emergentagent.com/terms</loc></url>
+</urlset>

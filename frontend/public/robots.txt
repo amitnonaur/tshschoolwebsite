@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://study-home-edu--0ts7e6wq.preview.emergentagent.com/sitemap.xml
