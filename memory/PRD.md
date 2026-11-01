@@ -38,6 +38,11 @@ Build a complete, modern, responsive, admission-focused website for The Study Ho
 - Private Enquiry Dashboard at /admin (login at /admin/login): JWT cookie auth, bcrypt, 15-min brute-force lockout, tabs for admission enquiries + contact messages, status workflow (new/contacted/closed).
 - Admissions Open Mode: one switch (admissionStatus in src/config/school.js) flips announcement bar and Admissions page wording to "Admissions Open".
 
+## Implemented (1 November 2026 — round 2)
+- Change Password: POST /api/auth/change-password (verifies current password, min 8 chars) + modal in the admin dashboard. Verified wrong current rejected, mismatch caught, login with new password works.
+- Export Enquiries: one-tap CSV download (admission enquiries and contact messages separately), verified file download admission-enquiries-2026-11-01.csv.
+- Deployment: first production deploy requested by user, 50 ECU charge confirmed, dispatched 1 Nov 2026.
+
 ## Backlog
 - P0: Owner verification of WhatsApp number (currently assumed = phone number) in school.js.
 - P1: Replace sitemap/robots preview domain with production domain after deployment; add canonical URLs.
