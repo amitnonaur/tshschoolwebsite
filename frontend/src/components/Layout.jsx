@@ -45,7 +45,9 @@ const Layout = () => {
         role="status"
         data-testid="announcement-bar"
       >
-        {SCHOOL.announcement}
+        {SCHOOL.admissionStatus === "open"
+          ? `Admissions Open — ${SCHOOL.sessionLabel} | ${SCHOOL.name}`
+          : SCHOOL.announcement}
       </div>
       <Header />
       <main className="flex-1">

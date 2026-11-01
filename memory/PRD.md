@@ -32,16 +32,21 @@ Build a complete, modern, responsive, admission-focused website for The Study Ho
 - Backend: enquiry POST success, duplicate rejected (409), invalid phone rejected (422), contact POST success.
 - Frontend: empty-submit validation errors shown; full form submission shows success state; FAQ accordion opens; 404 renders; desktop/tablet/mobile screenshots clean.
 
+## Implemented (1 November 2026)
+- Official TSH logo placed in header, footer, admin login and favicon (background removed, circular crop).
+- Enquiry email alerts: every admission enquiry and contact message emails thestudyhomeschool@gmail.com via Emergent-managed email (verified 202 Accepted). Fire-and-forget — email failure never breaks form submission.
+- Private Enquiry Dashboard at /admin (login at /admin/login): JWT cookie auth, bcrypt, 15-min brute-force lockout, tabs for admission enquiries + contact messages, status workflow (new/contacted/closed).
+- Admissions Open Mode: one switch (admissionStatus in src/config/school.js) flips announcement bar and Admissions page wording to "Admissions Open".
+
 ## Backlog
-- P0: Email notifications to thestudyhomeschool@gmail.com for new enquiries (Resend integration — integration point noted; not wired).
 - P0: Owner verification of WhatsApp number (currently assumed = phone number) in school.js.
-- P1: Simple admin view or export of stored enquiries (MongoDB) so the owner can read them easily.
 - P1: Replace sitemap/robots preview domain with production domain after deployment; add canonical URLs.
 - P1: Replace stock photos with real school photos when available; update privacy policy analytics note.
+- P1: Enquiry CSV export from dashboard.
 - P2: Hindi language version (Devanagari font support already planned).
 - P2: Google Maps embed once exact premises coordinates are verified.
 
 ## Next tasks
-1. Wire email notifications (Resend playbook) for new enquiries.
-2. Confirm WhatsApp number + flip admissionStatus to "open" when admissions formally open.
-3. Add enquiry export/admin read view.
+1. Confirm WhatsApp number with owner.
+2. Flip admissionStatus to "open" when admissions formally open.
+3. Production domain → update sitemap/robots + canonical URLs.

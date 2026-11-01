@@ -28,9 +28,11 @@ const Admissions = () => (
       description={`Register your interest for Classes 1–5 at The Study Home School, Arrah, Bhojpur — proposed for ${SCHOOL.sessionLabel}. Enquire about the admission process, fees and the school's approach.`}
     />
     <PageHero
-      eyebrow={`Admissions — proposed ${SCHOOL.session}`}
-      title="Register Your Interest for 2027–28"
-      description="The Study Home School is planned for Classes 1–5, proposed for Academic Session 2027–28. Admissions are not yet open — submit an enquiry and the school will keep you informed."
+      eyebrow={SCHOOL.admissionStatus === "open" ? `Admissions open — ${SCHOOL.sessionLabel}` : `Admissions — proposed ${SCHOOL.session}`}
+      title={SCHOOL.admissionStatus === "open" ? "Admissions Open for 2027–28" : "Register Your Interest for 2027–28"}
+      description={SCHOOL.admissionStatus === "open"
+        ? "Admissions are open for Classes 1–5 for Academic Session 2027–28. Submit an enquiry below and the school will contact you with the next steps."
+        : "The Study Home School is planned for Classes 1–5, proposed for Academic Session 2027–28. Admissions are not yet open — submit an enquiry and the school will keep you informed."}
     />
 
     <section className="py-14 sm:py-20 bg-white" data-testid="admissions-intro-section">
@@ -49,9 +51,10 @@ const Admissions = () => (
             <div className="mt-6 flex items-start gap-3 rounded-2xl border border-[#C9DCF0] bg-[#F3F6FA] p-5" data-testid="admissions-status-note">
               <Info size={18} className="mt-0.5 shrink-0 text-[#0756A5]" aria-hidden="true" />
               <p className="text-sm leading-relaxed text-[#475569]">
-                <strong className="text-[#123D62]">Current status:</strong> the admission process
-                has not officially opened. No admission date, fee or seat count has been finalised.
-                Enquiring now registers your interest only — it creates no obligation on either side.
+                <strong className="text-[#123D62]">Current status:</strong>{" "}
+                {SCHOOL.admissionStatus === "open"
+                  ? "admissions are open for the 2027–28 session. Submit the enquiry form and the school will guide you through the next steps, documents and fee details."
+                  : "the admission process has not officially opened. No admission date, fee or seat count has been finalised. Enquiring now registers your interest only — it creates no obligation on either side."}
               </p>
             </div>
 
@@ -88,7 +91,7 @@ const Admissions = () => (
           <Reveal delay={0.1}>
             <div className="lg:sticky lg:top-28">
               <p className="eyebrow">Admission enquiry form</p>
-              <h2 className="mt-2 mb-5 text-xl sm:text-2xl font-bold text-[#123D62]">Enquire About the Proposed {SCHOOL.session} Session</h2>
+              <h2 className="mt-2 mb-5 text-xl sm:text-2xl font-bold text-[#123D62]">{SCHOOL.admissionStatus === "open" ? `Admission Enquiry — ${SCHOOL.sessionLabel}` : `Enquire About the Proposed ${SCHOOL.session} Session`}</h2>
               <EnquiryForm />
             </div>
           </Reveal>

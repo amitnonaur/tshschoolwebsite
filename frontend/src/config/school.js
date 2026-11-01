@@ -18,7 +18,8 @@ export const SCHOOL = {
   // WhatsApp assumed to be the school phone number — change here if different.
   whatsappNumber: "917011615622",
   whatsappConfigured: true,
-  // "planning" | "open" — switches announcement and CTA wording when admissions formally open
+  // ONE SWITCH: change "planning" to "open" when admissions formally open.
+  // The announcement bar and Admissions page wording update automatically.
   admissionStatus: "planning",
   announcement: "Planning for Academic Session 2027–28 | The Study Home School",
   plannedCapacity: "approximately 100 students",
