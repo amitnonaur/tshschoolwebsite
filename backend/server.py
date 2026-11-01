@@ -389,6 +389,31 @@ class StatusUpdate(BaseModel):
         return v
 
 
+class PasswordChange(BaseModel):
+    current_password: str = Field(min_length=1, max_length=128)
+    new_password: str = Field(min_length=8, max_length=128)
+
+    @field_validator("new_password")
+    @classmethod
+    def check_strength(cls, v):
+        if len(v) < 8:
+            raise ValueError("New password must be at least 8 characters.")
+        return v
+
+
+@api_router.post("/auth/change-password")
+async def change_password(payload: PasswordChange, admin=Depends(get_current_admin)):
+    user = await db.users.find_one({"_id": ObjectId(admin["id"])})
+    if not user or not verify_password(payload.current_password, user["password_hash"]):
+        raise HTTPException(status_code=400, detail="Current password is incorrect.")
+    await db.users.update_one(
+        {"_id": ObjectId(admin["id"])},
+        {"$set": {"password_hash": hash_password(payload.new_password)}},
+    )
+    logger.info("Admin password changed")
+    return {"success": True, "message": "Password updated successfully."}
+
+
 async def _update_status(collection, item_id: str, status: str):
     result = await collection.update_one({"enquiry_id": item_id}, {"$set": {"status": status}})
     if result.matched_count == 0 and ObjectId.is_valid(item_id):

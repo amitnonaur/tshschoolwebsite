@@ -2,7 +2,7 @@ import { useEffect, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "sonner";
-import { Loader2, LogOut, Inbox, MessageSquare, RefreshCw } from "lucide-react";
+import { Loader2, LogOut, Inbox, MessageSquare, RefreshCw, Download, KeyRound, X } from "lucide-react";
 import SEO from "../components/SEO";
 import { API } from "../config/school";
 
@@ -27,6 +27,81 @@ const fmt = (iso) => {
   }
 };
 
+const csvCell = (v) => `"${String(v ?? "").replace(/"/g, '""')}"`;
+
+const downloadCsv = (filename, headers, rows) => {
+  const csv = [headers, ...rows].map((r) => r.map(csvCell).join(",")).join("\r\n");
+  const blob = new Blob(["﻿" + csv], { type: "text/csv;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = filename;
+  a.click();
+  URL.revokeObjectURL(url);
+};
+
+const ChangePasswordModal = ({ onClose }) => {
+  const [current, setCurrent] = useState("");
+  const [next, setNext] = useState("");
+  const [confirm, setConfirm] = useState("");
+  const [error, setError] = useState("");
+  const [saving, setSaving] = useState(false);
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    setError("");
+    if (next.length < 8) return setError("New password must be at least 8 characters.");
+    if (next !== confirm) return setError("New passwords do not match.");
+    setSaving(true);
+    try {
+      await axios.post(`${API}/auth/change-password`, { current_password: current, new_password: next }, { withCredentials: true });
+      toast.success("Password updated", { description: "Use your new password next time you sign in." });
+      onClose();
+    } catch (err) {
+      const detail = err?.response?.data?.detail;
+      setError(typeof detail === "string" ? detail : "Could not update password. Please try again.");
+      setSaving(false);
+    }
+  };
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4" role="dialog" aria-modal="true" aria-label="Change password" data-testid="change-password-modal">
+      <div className="w-full max-w-md rounded-2xl bg-white shadow-xl p-6 sm:p-8">
+        <div className="flex items-center justify-between">
+          <h2 className="text-lg font-bold text-[#123D62]">Change Password</h2>
+          <button type="button" onClick={onClose} aria-label="Close" className="w-9 h-9 inline-flex items-center justify-center rounded-lg hover:bg-[#F3F6FA] text-[#123D62]" data-testid="change-password-close">
+            <X size={18} aria-hidden="true" />
+          </button>
+        </div>
+        <form onSubmit={onSubmit} className="mt-5 space-y-4" data-testid="change-password-form">
+          <div>
+            <label htmlFor="cp_current" className="block text-sm font-semibold text-[#123D62] mb-1.5">Current password</label>
+            <input id="cp_current" type="password" required autoComplete="current-password" value={current} onChange={(e) => setCurrent(e.target.value)}
+              className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#0756A5]/40" data-testid="cp-current-input" />
+          </div>
+          <div>
+            <label htmlFor="cp_new" className="block text-sm font-semibold text-[#123D62] mb-1.5">New password (min 8 characters)</label>
+            <input id="cp_new" type="password" required autoComplete="new-password" value={next} onChange={(e) => setNext(e.target.value)}
+              className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#0756A5]/40" data-testid="cp-new-input" />
+          </div>
+          <div>
+            <label htmlFor="cp_confirm" className="block text-sm font-semibold text-[#123D62] mb-1.5">Confirm new password</label>
+            <input id="cp_confirm" type="password" required autoComplete="new-password" value={confirm} onChange={(e) => setConfirm(e.target.value)}
+              className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#0756A5]/40" data-testid="cp-confirm-input" />
+          </div>
+          {error && <p className="rounded-xl bg-red-50 border border-red-200 px-4 py-3 text-sm text-red-700" role="alert" data-testid="cp-error">{error}</p>}
+          <button type="submit" disabled={saving}
+            className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-[#0756A5] hover:bg-[#054485] disabled:opacity-60 text-white font-semibold text-sm px-6 py-3 transition-colors"
+            data-testid="cp-submit">
+            {saving && <Loader2 size={16} className="animate-spin" aria-hidden="true" />}
+            {saving ? "Updating…" : "Update Password"}
+          </button>
+        </form>
+      </div>
+    </div>
+  );
+};
+
 const AdminDashboard = () => {
   const [admin, setAdmin] = useState(null);
   const [checking, setChecking] = useState(true);
@@ -34,6 +109,7 @@ const AdminDashboard = () => {
   const [enquiries, setEnquiries] = useState([]);
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [showPasswordModal, setShowPasswordModal] = useState(false);
   const navigate = useNavigate();
 
   const load = useCallback(async () => {
@@ -88,6 +164,24 @@ const AdminDashboard = () => {
     }
   };
 
+  const exportCsv = () => {
+    const stamp = new Date().toISOString().slice(0, 10);
+    if (tab === "enquiries") {
+      downloadCsv(
+        `admission-enquiries-${stamp}.csv`,
+        ["Parent Name", "Child Name", "Class", "Mobile", "Email", "Preferred Contact", "Message", "Status", "Received"],
+        enquiries.map((e) => [e.parent_name, e.child_name || "", e.class_of_interest, e.phone, e.email || "", e.preferred_contact === "whatsapp" ? "WhatsApp" : "Phone", e.message || "", e.status || "new", fmt(e.created_at)])
+      );
+    } else {
+      downloadCsv(
+        `contact-messages-${stamp}.csv`,
+        ["Name", "Mobile", "Enquiry Type", "Message", "Status", "Received"],
+        messages.map((m) => [m.name, m.phone, m.enquiry_type, m.message, m.status || "new", fmt(m.created_at)])
+      );
+    }
+    toast.success("Spreadsheet downloaded");
+  };
+
   if (checking) {
     return (
       <div className="min-h-[60vh] flex items-center justify-center" data-testid="admin-loading">
@@ -107,7 +201,17 @@ const AdminDashboard = () => {
             <h1 className="text-2xl sm:text-3xl font-bold text-[#123D62]">Enquiry Dashboard</h1>
             <p className="mt-1 text-sm text-[#64748B]">Signed in as {admin?.email}</p>
           </div>
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
+            <button type="button" onClick={exportCsv}
+              className="inline-flex items-center gap-2 rounded-full bg-[#16A34A] hover:bg-[#15803D] text-white text-sm font-semibold px-5 py-2.5 transition-colors"
+              data-testid="admin-export-csv-btn">
+              <Download size={15} aria-hidden="true" /> Export {tab === "enquiries" ? "Enquiries" : "Messages"}
+            </button>
+            <button type="button" onClick={() => setShowPasswordModal(true)}
+              className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white text-[#123D62] text-sm font-semibold px-5 py-2.5 hover:bg-[#F3F6FA] transition-colors"
+              data-testid="admin-change-password-btn">
+              <KeyRound size={15} aria-hidden="true" /> Change Password
+            </button>
             <button type="button" onClick={load}
               className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white text-[#123D62] text-sm font-semibold px-5 py-2.5 hover:bg-[#F3F6FA] transition-colors"
               data-testid="admin-refresh-btn">
@@ -186,6 +290,7 @@ const AdminDashboard = () => {
           </div>
         )}
       </div>
+      {showPasswordModal && <ChangePasswordModal onClose={() => setShowPasswordModal(false)} />}
     </div>
   );
 };
