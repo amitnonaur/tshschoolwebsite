@@ -8,7 +8,7 @@ export const SCHOOL = {
   promise: "Strong Academics. Confident English Communication. Digital Capability. Practical Intelligence.",
   session: "2027–28",
   sessionLabel: "Academic Session 2027–28",
-  classes: ["Class 1", "Class 2", "Class 3", "Class 4", "Class 5"],
+  classes: ["Class 1", "Class 2", "Class 3", "Class 4", "Class 5", "Class 6"],
   city: "Arrah, Bhojpur, Bihar",
   address: "South Bhelai Road, Krishna Nagar, Zero Mile, Arrah, Bihar",
   phone: "+91 70116 15622",
@@ -24,6 +24,11 @@ export const SCHOOL = {
   announcement: "Planning for Academic Session 2027–28 | The Study Home School",
   plannedCapacity: "approximately 100 students",
   plannedPremises: "eight rooms plus a play area",
+  // Verified school location (provided by the owner) — used for the Contact page map.
+  mapLat: 25.535501,
+  mapLng: 84.646393,
+  mapEmbedUrl: "https://www.google.com/maps?q=25.535501,84.646393&z=16&output=embed",
+  mapLink: "https://www.google.com/maps?q=25.535501,84.646393",
 };
 
 export const IMAGES = {

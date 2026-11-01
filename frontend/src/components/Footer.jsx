@@ -16,7 +16,7 @@ const Footer = () => (
         </div>
         <p className="mt-4 text-sm leading-relaxed">{SCHOOL.tagline}</p>
         <p className="mt-3 text-xs text-[#8FA9C2] leading-relaxed">
-          A planned primary school for Classes 1–5, proposed for {SCHOOL.sessionLabel}.
+          A planned primary school for Classes 1–6, proposed for {SCHOOL.sessionLabel}.
         </p>
       </div>
 

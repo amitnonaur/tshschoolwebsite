@@ -43,13 +43,19 @@ Build a complete, modern, responsive, admission-focused website for The Study Ho
 - Export Enquiries: one-tap CSV download (admission enquiries and contact messages separately), verified file download admission-enquiries-2026-11-01.csv.
 - Deployment: first production deploy requested by user, 50 ECU charge confirmed, dispatched 1 Nov 2026.
 
+## Implemented (1 November 2026 — round 3)
+- Classes extended from 1–5 to 1–6 everywhere: config, backend validation, enquiry form dropdown, homepage grade cards (6 cards), hero trust line, About/Academics/FAQ/Admissions/Contact copy, page titles and meta descriptions. Verified Class 6 enquiry accepted by backend.
+- Google Map embedded on Contact page (owner-verified coordinates 25.535501, 84.646393) with "Open in Google Maps" directions link.
+- Custom domain: full connection guide given to user (Domain tab → Auto-link or manual A/CNAME records); domain thestudyhomeschool.in to be connected by user; sitemap/robots/FRONTEND_URL need updating to the new domain once connected.
+- WhatsApp enquiry alerts: user chose to skip (email alerts suffice).
+
 ## Backlog
 - P0: Owner verification of WhatsApp number (currently assumed = phone number) in school.js.
 - P1: Replace sitemap/robots preview domain with production domain after deployment; add canonical URLs.
 - P1: Replace stock photos with real school photos when available; update privacy policy analytics note.
 - P1: Enquiry CSV export from dashboard.
 - P2: Hindi language version (Devanagari font support already planned).
-- P2: Google Maps embed once exact premises coordinates are verified.
+- P2: When domain connects, update sitemap.xml/robots.txt domain, backend FRONTEND_URL, and add canonical URLs.
 
 ## Next tasks
 1. Confirm WhatsApp number with owner.

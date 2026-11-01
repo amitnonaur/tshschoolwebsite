@@ -73,13 +73,13 @@ const Field = ({ label, children }) => (
 const Academics = () => (
   <div data-testid="academics-page">
     <SEO
-      title="Academics | Classes 1–5 Curriculum Overview — The Study Home School"
-      description="Academic overview for Classes 1–5 at The Study Home School, Arrah: Mathematics, English, Hindi, EVS, computer education, art, sports and life skills — taught for understanding, not memorising."
+      title="Academics | Classes 1–6 Curriculum Overview — The Study Home School"
+      description="Academic overview for Classes 1–6 at The Study Home School, Arrah: Mathematics, English, Hindi, EVS, computer education, art, sports and life skills — taught for understanding, not memorising."
     />
     <PageHero
       eyebrow="Academics"
       title="One Philosophy, Adapted to Every Class"
-      description="The same belief — understanding over memorising — runs through every subject and every grade, from Class 1 to Class 5."
+      description="The same belief — understanding over memorising — runs through every subject and every grade, from Class 1 to Class 6."
     />
 
     <section className="py-14 sm:py-20 bg-white">

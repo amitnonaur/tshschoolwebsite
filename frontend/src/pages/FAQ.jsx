@@ -10,7 +10,7 @@ const GROUPS = [
   {
     category: "The school & session",
     faqs: [
-      { q: "Which classes are planned?", a: "Classes 1 to 5 at launch. Growth to further classes will be gradual, and parents will be informed transparently as plans develop." },
+      { q: "Which classes are planned?", a: "Classes 1 to 6 at launch. Growth to further classes will be gradual, and parents will be informed transparently as plans develop." },
       { q: "When will the school open?", a: `The proposed opening is ${SCHOOL.sessionLabel}. This is a planned session, not a confirmed opening date. Families who register their interest will be updated as plans are confirmed.` },
       { q: "Where will the school be located?", a: `The planned premises are at ${SCHOOL.address}, with eight rooms plus a play area, and an initial planned capacity of approximately 100 students.` },
       { q: "Is the school affiliated or recognised?", a: "The school is being planned and does not yet claim any board affiliation, recognition or registration. Curriculum planning may refer to widely used resources such as NCERT publications, which does not imply affiliation. Any future affiliation will be shared honestly once formally confirmed." },

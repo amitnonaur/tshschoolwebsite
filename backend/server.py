@@ -32,7 +32,7 @@ db = client[os.environ['DB_NAME']]
 app = FastAPI()
 api_router = APIRouter(prefix="/api")
 
-VALID_CLASSES = ["Class 1", "Class 2", "Class 3", "Class 4", "Class 5"]
+VALID_CLASSES = ["Class 1", "Class 2", "Class 3", "Class 4", "Class 5", "Class 6"]
 ENQUIRY_TYPES = ["Admission", "Fees", "Academics", "Visit", "General"]
 ENQUIRY_STATUSES = ["new", "contacted", "closed"]
 
@@ -229,7 +229,7 @@ class EnquiryIn(BaseModel):
     @classmethod
     def check_class(cls, v):
         if v not in VALID_CLASSES:
-            raise ValueError("Please choose a class between Class 1 and Class 5.")
+            raise ValueError("Please choose a class between Class 1 and Class 6.")
         return v
 
     @field_validator("preferred_contact")

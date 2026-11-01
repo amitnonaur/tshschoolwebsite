@@ -17,7 +17,7 @@ const PRINCIPLES = [
 
 const REASONS = [
   { title: "Why this school is being planned", text: "Many families in and around Arrah want a primary school that combines strong academics with confident English, early computer education and genuine care — at a cost that remains sensible. The Study Home School is being planned to answer that need, step by step." },
-  { title: "Foundations decide the future", text: "What a child learns between Classes 1 and 5 shapes everything that follows. Strong reading, clear writing and confident numeracy in the primary years make later learning easier, faster and more enjoyable." },
+  { title: "Foundations decide the future", text: "What a child learns between Classes 1 and 6 shapes everything that follows. Strong reading, clear writing and confident numeracy in the primary years make later learning easier, faster and more enjoyable." },
   { title: "Knowledge with practical understanding", text: "A concept is truly learned when a child can use it — measuring real objects, explaining an idea in their own words, or solving a small everyday problem. Teaching connects the textbook to real life." },
   { title: "Communication, digital capability and creativity", text: "Alongside Mathematics, English and Hindi, children need to express themselves clearly, use technology responsibly and create with their hands and minds. These are treated as essential, not optional extras." },
   { title: "Character, discipline and responsibility", text: "Respect, honesty, good habits, sports and responsibility are woven into everyday school life — because education is about the kind of person a child becomes, not only the marks they score." },
@@ -28,7 +28,7 @@ const About = () => (
   <div data-testid="about-page">
     <SEO
       title="About Us | The Study Home School, Arrah Bhojpur"
-      description="Why The Study Home School is being planned in Arrah, Bhojpur — our vision, mission and educational principles for affordable, high-quality primary education for Classes 1–5."
+      description="Why The Study Home School is being planned in Arrah, Bhojpur — our vision, mission and educational principles for affordable, high-quality primary education for Classes 1–6."
     />
     <PageHero
       eyebrow="About us"

@@ -39,6 +39,7 @@ const GRADES = [
   { icon: Blocks, grade: "Class 3", focus: "Building independence", text: "Longer reading, paragraph writing, multiplication and division, and simple projects that connect subjects to daily life." },
   { icon: GraduationCap, grade: "Class 4", focus: "Deeper reasoning", text: "Reading comprehension, mathematical reasoning, structured writing, and presenting ideas in English and Hindi." },
   { icon: Rocket, grade: "Class 5", focus: "Ready for middle school", text: "Independent study habits, problem-solving, digital basics, and preparation for a confident transition to middle school." },
+  { icon: GraduationCap, grade: "Class 6", focus: "Confident next step", text: "Consolidated foundations, organised study routines, stronger writing and reasoning, and a smooth bridge into middle-school expectations." },
 ];
 
 const ENGLISH_POINTS = [
@@ -82,7 +83,7 @@ const ASSESSMENT_POINTS = [
 ];
 
 const FAQS = [
-  { q: "Which classes are planned?", a: "The Study Home School is planned for Classes 1 to 5 at launch. Growth to further classes will be considered gradually, and parents will be informed transparently." },
+  { q: "Which classes are planned?", a: "The Study Home School is planned for Classes 1 to 6 at launch. Growth to further classes will be considered gradually, and parents will be informed transparently." },
   { q: "When is the proposed school session?", a: `The school is planned for ${SCHOOL.sessionLabel}. This is a proposed opening; families who register their interest will be updated as plans are confirmed.` },
   { q: "What is the school's teaching approach?", a: "Teaching focuses on understanding rather than memorising. Strong foundations in Mathematics, English and Hindi are combined with practical activities, computer education, sports and character development." },
   { q: "How will English communication be developed?", a: "English grows through regular listening, speaking, reading and writing practice — storytelling, presentations, role-play and everyday classroom conversation — with gradual, patient confidence-building." },
@@ -100,7 +101,7 @@ const Home = () => {
     <div data-testid="home-page">
       <SEO
         title="The Study Home School | Primary School in Arrah, Bhojpur (Proposed 2027–28)"
-        description="A planned primary school in Arrah, Bhojpur, Bihar for Classes 1–5. Strong academics, confident English communication, computer education and practical learning. Enquire for Academic Session 2027–28."
+        description="A planned primary school in Arrah, Bhojpur, Bihar for Classes 1–6. Strong academics, confident English communication, computer education and practical learning. Enquire for Academic Session 2027–28."
       />
 
       {/* Hero */}
@@ -137,7 +138,7 @@ const Home = () => {
                 </Link>
               </div>
               <p className="mt-6 text-xs sm:text-sm font-semibold tracking-wide text-[#64748B] uppercase" data-testid="hero-trust-statement">
-                Focused on Classes 1–5 <span className="text-[#D97706] mx-1.5" aria-hidden="true">•</span> Academic Foundations <span className="text-[#D97706] mx-1.5" aria-hidden="true">•</span> Skills for Life
+                Focused on Classes 1–6 <span className="text-[#D97706] mx-1.5" aria-hidden="true">•</span> Academic Foundations <span className="text-[#D97706] mx-1.5" aria-hidden="true">•</span> Skills for Life
               </p>
             </Reveal>
           </div>
@@ -181,9 +182,9 @@ const Home = () => {
 
       {/* Grades */}
       <Section alt testId="programme-section">
-        <Reveal><SectionHead eyebrow="Our academic programme" title="Strong Foundations for Classes 1–5"
+        <Reveal><SectionHead eyebrow="Our academic programme" title="Strong Foundations for Classes 1–6"
           intro="A careful progression from foundational literacy and numeracy to stronger comprehension, mathematical reasoning, independent learning and readiness for middle school. Detailed grade-wise curriculum will be finalised and shared before the session begins." /></Reveal>
-        <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
+        <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {GRADES.map((g, i) => (
             <Reveal key={g.grade} delay={i * 0.07}>
               <article className="card-site h-full !p-6" data-testid={`grade-card-${i + 1}`}>

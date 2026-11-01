@@ -25,14 +25,14 @@ const Admissions = () => (
   <div data-testid="admissions-page">
     <SEO
       title={`Admissions ${SCHOOL.session} | The Study Home School, Arrah Bhojpur`}
-      description={`Register your interest for Classes 1–5 at The Study Home School, Arrah, Bhojpur — proposed for ${SCHOOL.sessionLabel}. Enquire about the admission process, fees and the school's approach.`}
+      description={`Register your interest for Classes 1–6 at The Study Home School, Arrah, Bhojpur — proposed for ${SCHOOL.sessionLabel}. Enquire about the admission process, fees and the school's approach.`}
     />
     <PageHero
       eyebrow={SCHOOL.admissionStatus === "open" ? `Admissions open — ${SCHOOL.sessionLabel}` : `Admissions — proposed ${SCHOOL.session}`}
       title={SCHOOL.admissionStatus === "open" ? "Admissions Open for 2027–28" : "Register Your Interest for 2027–28"}
       description={SCHOOL.admissionStatus === "open"
-        ? "Admissions are open for Classes 1–5 for Academic Session 2027–28. Submit an enquiry below and the school will contact you with the next steps."
-        : "The Study Home School is planned for Classes 1–5, proposed for Academic Session 2027–28. Admissions are not yet open — submit an enquiry and the school will keep you informed."}
+        ? "Admissions are open for Classes 1–6 for Academic Session 2027–28. Submit an enquiry below and the school will contact you with the next steps."
+        : "The Study Home School is planned for Classes 1–6, proposed for Academic Session 2027–28. Admissions are not yet open — submit an enquiry and the school will keep you informed."}
     />
 
     <section className="py-14 sm:py-20 bg-white" data-testid="admissions-intro-section">

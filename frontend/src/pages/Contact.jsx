@@ -11,7 +11,7 @@ const Contact = () => {
     <div data-testid="contact-page">
       <SEO
         title="Contact Us | The Study Home School, Arrah Bhojpur"
-        description={`Contact The Study Home School, ${SCHOOL.address}. Phone ${SCHOOL.phone}, email ${SCHOOL.email}. Ask about the proposed ${SCHOOL.sessionLabel} for Classes 1–5.`}
+        description={`Contact The Study Home School, ${SCHOOL.address}. Phone ${SCHOOL.phone}, email ${SCHOOL.email}. Ask about the proposed ${SCHOOL.sessionLabel} for Classes 1–6.`}
       />
       <PageHero
         eyebrow="Contact us"
@@ -74,12 +74,26 @@ const Contact = () => {
               </p>
             )}
 
-            <div className="mt-8 rounded-2xl border border-[#C9DCF0] bg-[#F3F6FA] p-5" data-testid="contact-map-note">
-              <p className="text-sm leading-relaxed text-[#475569]">
-                <strong className="text-[#123D62]">Map & visiting:</strong> a location map will be
-                published once the school's exact premises details are verified. Please call ahead
-                before planning a visit — the school is in the planning stage and does not yet keep
-                regular visiting hours.
+            <div className="mt-8" data-testid="contact-map-section">
+              <p className="text-sm font-semibold text-[#123D62] mb-3">Find us on the map</p>
+              <div className="rounded-2xl overflow-hidden border border-slate-200 shadow-sm aspect-[4/3]">
+                <iframe
+                  title="Map showing the location of The Study Home School, Krishna Nagar, Arrah"
+                  src={SCHOOL.mapEmbedUrl}
+                  className="w-full h-full border-0"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  allowFullScreen
+                  data-testid="contact-map-iframe"
+                />
+              </div>
+              <a href={SCHOOL.mapLink} target="_blank" rel="noopener noreferrer"
+                className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-[#0756A5] hover:underline"
+                data-testid="contact-map-directions-link">
+                <MapPin size={15} aria-hidden="true" /> Open in Google Maps for directions
+              </a>
+              <p className="mt-3 text-xs text-[#64748B] leading-relaxed">
+                The school is in the planning stage and does not yet keep regular visiting hours — please call ahead before planning a visit.
               </p>
             </div>
           </Reveal>
