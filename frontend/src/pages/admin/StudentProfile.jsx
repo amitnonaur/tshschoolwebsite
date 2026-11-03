@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { toast } from "sonner";
-import { Pencil, Printer, Phone, Archive, RotateCcw, IndianRupee, CalendarCheck, FileText } from "lucide-react";
+import { Pencil, Printer, Phone, Archive, RotateCcw, IndianRupee, CalendarCheck, FileText, CreditCard } from "lucide-react";
 import { API } from "../../config/school";
 
 const fmtInr = (n) => "₹" + Number(n || 0).toLocaleString("en-IN");
@@ -88,6 +88,11 @@ const StudentProfile = () => {
               className="inline-flex items-center gap-1.5 rounded-full border border-slate-300 bg-white text-[#123D62] text-xs font-semibold px-4 py-2 hover:bg-slate-50"
               data-testid="profile-admission-form-btn">
               <FileText size={13} aria-hidden="true" /> Admission Form
+            </Link>
+            <Link to={`/admin/idcard/${student.reg_id}`}
+              className="inline-flex items-center gap-1.5 rounded-full border border-slate-300 bg-white text-[#123D62] text-xs font-semibold px-4 py-2 hover:bg-slate-50"
+              data-testid="profile-idcard-btn">
+              <CreditCard size={13} aria-hidden="true" /> ID Card
             </Link>
             <button type="button" onClick={() => window.print()}
               className="inline-flex items-center gap-1.5 rounded-full border border-slate-300 bg-white text-[#123D62] text-xs font-semibold px-4 py-2 hover:bg-slate-50"

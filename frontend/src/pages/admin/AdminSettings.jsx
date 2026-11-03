@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "sonner";
-import { Loader2, KeyRound, Save } from "lucide-react";
+import { Loader2, KeyRound, Save, DatabaseBackup } from "lucide-react";
 import { API } from "../../config/school";
 
 const AdminSettings = () => {
@@ -58,6 +58,30 @@ const AdminSettings = () => {
             Update Password
           </button>
         </form>
+      </div>
+
+      <div className="mt-5 rounded-2xl bg-white border border-slate-200 shadow-sm p-5 sm:p-6" data-testid="backup-card">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-xl bg-[#EDF9F0] flex items-center justify-center text-[#16A34A]"><DatabaseBackup size={18} aria-hidden="true" /></div>
+          <div>
+            <h2 className="text-base font-bold text-[#123D62]">Full Backup</h2>
+            <p className="text-xs text-[#64748B]">Download all students, fees, finance, attendance, results and promotions as one Excel file.</p>
+          </div>
+        </div>
+        <button type="button" onClick={async () => {
+            const { data } = await axios.get(`${API}/admin/backup`, { withCredentials: true, responseType: "blob" });
+            const url = URL.createObjectURL(data);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = `tsh-backup-${new Date().toISOString().slice(0, 10)}.xlsx`;
+            a.click();
+            URL.revokeObjectURL(url);
+            toast.success("Backup downloaded");
+          }}
+          className="mt-4 inline-flex items-center gap-2 rounded-full bg-[#16A34A] hover:bg-[#15803D] text-white text-sm font-semibold px-6 py-2.5"
+          data-testid="backup-download-btn">
+          <DatabaseBackup size={15} aria-hidden="true" /> Download Backup (.xlsx)
+        </button>
       </div>
     </div>
   );

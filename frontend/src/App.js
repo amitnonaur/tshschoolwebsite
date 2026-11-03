@@ -42,6 +42,8 @@ import AttendancePage from "./pages/admin/AttendancePage";
 import AttendanceReport from "./pages/admin/AttendanceReport";
 import AdmissionPrint from "./pages/admin/AdmissionPrint";
 import ParentsPortal from "./pages/ParentsPortal";
+import TimetablePage from "./pages/admin/TimetablePage";
+import IDCard from "./pages/admin/IDCard";
 
 function App() {
   return (
@@ -63,6 +65,8 @@ function App() {
             <Route path="promote" element={<PromoteBatch />} />
             <Route path="attendance" element={<AttendancePage />} />
             <Route path="attendance-report" element={<AttendanceReport />} />
+            <Route path="timetable" element={<TimetablePage />} />
+            <Route path="idcard/:regId" element={<IDCard />} />
             <Route path="results" element={<TestResults />} />
             <Route path="admission-print/:regId" element={<AdmissionPrint />} />
             <Route path="exams" element={<ExamsAdmin />} />

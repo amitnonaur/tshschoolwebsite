@@ -4,7 +4,7 @@ import axios from "axios";
 import { toast } from "sonner";
 import {
   LayoutDashboard, UserPlus, Users, ArrowUpRightSquare, ClipboardList, MonitorPlay,
-  BookOpen, Video, Megaphone, Wallet, LineChart, Settings, UsersRound, LogOut, Menu, X, Upload, CalendarCheck,
+  BookOpen, Video, Megaphone, Wallet, LineChart, Settings, UsersRound, LogOut, Menu, X, Upload, CalendarCheck, CalendarRange,
 } from "lucide-react";
 import { API } from "../../config/school";
 import { LogoMark } from "../../components/Logo";
@@ -23,6 +23,7 @@ const NAV = [
   { section: "ACADEMICS", roles: ["admin", "teacher"] },
   { to: "/admin/attendance", label: "Attendance", icon: CalendarCheck, testId: "admin-nav-attendance", roles: ["admin", "teacher"] },
   { to: "/admin/attendance-report", label: "Attendance Report", icon: ClipboardList, testId: "admin-nav-attendance-report", roles: ["admin", "teacher"] },
+  { to: "/admin/timetable", label: "Timetable", icon: CalendarRange, testId: "admin-nav-timetable", roles: ["admin", "teacher"] },
   { to: "/admin/results", label: "Test Results", icon: ClipboardList, testId: "admin-nav-results", roles: ["admin", "teacher"] },
   { to: "/admin/exams", label: "Online Exams", icon: MonitorPlay, testId: "admin-nav-exams", roles: ["admin", "teacher"] },
   { to: "/admin/materials", label: "Materials", icon: BookOpen, testId: "admin-nav-materials", roles: ["admin", "teacher"] },
@@ -45,6 +46,7 @@ const PAGE_TITLES = {
   "/admin/import": "Bulk Import",
   "/admin/attendance": "Attendance Register",
   "/admin/attendance-report": "Attendance Report",
+  "/admin/timetable": "Timetable",
   "/admin/results": "Test Results",
   "/admin/exams": "Online Exams",
   "/admin/materials": "Materials",

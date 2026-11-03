@@ -20,7 +20,7 @@ export const SCHOOL = {
   whatsappConfigured: true,
   // ONE SWITCH: change "planning" to "open" when admissions formally open.
   // The announcement bar and Admissions page wording update automatically.
-  admissionStatus: "planning",
+  admissionStatus: "open",
   announcement: "Planning for Academic Session 2027–28 | The Study Home School",
   plannedCapacity: "approximately 100 students",
   plannedPremises: "eight rooms plus a play area",

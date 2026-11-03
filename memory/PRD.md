@@ -89,6 +89,12 @@ Build a complete, modern, responsive, admission-focused website for The Study Ho
 - Attendance Report: /admin/attendance-report — class+month picker, per-student P/A/L/% + day grid, CSV export; sidebar item under Academics.
 - Parent Portal: public /parents page — 3-step login explanation, feature cards, help box; linked from Parents dropdown + footer.
 
+## Implemented (3 November 2026 — round 5)
+- Admissions Open Mode flipped: admissionStatus "open" — announcement bar + Admissions page hero now say "Admissions Open — Academic Session 2027–28".
+- Timetable Builder: /admin/timetable — class picker, editable period names (add/remove up to 10), 6-day grid with subject autocomplete, save per class (upsert), print. Sidebar item added (admin+teacher).
+- ID Card Generator: /admin/idcard/:regId — branded card (logo header, photo, name, Reg ID, class+roll, session, DOB, father, mobile, validity footer), print button; linked from student profile.
+- Backup Export: /admin/backup — one-tap .xlsx download with 6 sheets (Students, Fee Payments, Finance, Attendance, Test Results, Promotions); button in Admin Settings.
+
 ## Backlog
 - P0: Owner verification of WhatsApp number (currently assumed = phone number) in school.js.
 - P1: Replace sitemap/robots preview domain with production domain after deployment; add canonical URLs.
