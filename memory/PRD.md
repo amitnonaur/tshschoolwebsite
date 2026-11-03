@@ -62,6 +62,13 @@ Build a complete, modern, responsive, admission-focused website for The Study Ho
 - Placeholders (explicitly deferred per user spec, no invented logic): Materials, Videos, Announcements, Finance Tracker, User Management.
 - Note: MongoDB standalone → no multi-doc transactions; promotion uses pre-validation + sequential writes with full history records.
 
+## Implemented (3 November 2026 — Phases 7–9)
+- Online Exams (full): admin exam builder (name/course/class/subject/schedule/duration/attempts/instructions/negative marking +2/-0.5 defaults, shuffle), question builder (MCQ 4-option + True/False) with validation, question bank (class/subject/chapter/difficulty), statuses draft→scheduled→published→live→completed/cancelled, live monitor (students/started/submitted, extend time, cancel, publish results), activity log. Student interface at /exam-login (Reg ID + DOB JWT), /exam list, /exam/:id/take with server-enforced deadline + auto-submit + shuffled Q&A, result only after admin publishes. Verified: Aarav scored 4/4, attempt limit enforced, wrong DOB rejected.
+- Bulk Import: CSV/XLSX template download, preview with per-row validation (dob format, gender, mobile, class, duplicate Reg IDs in file and DB), confirm import with skip-not-overwrite, import history. Verified: 2 imported (TSH26270004/05), 1 bad row skipped with clear errors.
+- Materials: upload (title/class/subject/desc/file ≤5MB), list with class filter, download, delete.
+- Announcements: post with audience (All/class), list, delete.
+- Videos, Finance Tracker, User Management remain placeholders pending owner workflow rules.
+
 ## Backlog
 - P0: Owner verification of WhatsApp number (currently assumed = phone number) in school.js.
 - P1: Replace sitemap/robots preview domain with production domain after deployment; add canonical URLs.

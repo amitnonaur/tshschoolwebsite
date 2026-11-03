@@ -4,7 +4,7 @@ import axios from "axios";
 import { toast } from "sonner";
 import {
   LayoutDashboard, UserPlus, Users, ArrowUpRightSquare, ClipboardList, MonitorPlay,
-  BookOpen, Video, Megaphone, Wallet, LineChart, Settings, UsersRound, LogOut, Menu, X, ChevronDown,
+  BookOpen, Video, Megaphone, Wallet, LineChart, Settings, UsersRound, LogOut, Menu, X, Upload,
 } from "lucide-react";
 import { API } from "../../config/school";
 import { LogoMark } from "../../components/Logo";
@@ -19,6 +19,7 @@ const NAV = [
   { to: "/admin/admission", label: "New Admission", icon: UserPlus, testId: "admin-nav-admission" },
   { to: "/admin/students", label: "Student List", icon: Users, testId: "admin-nav-students" },
   { to: "/admin/promote", label: "Promote Batch", icon: ArrowUpRightSquare, testId: "admin-nav-promote" },
+  { to: "/admin/import", label: "Bulk Import", icon: Upload, testId: "admin-nav-import" },
   { section: "ACADEMICS" },
   { to: "/admin/results", label: "Test Results", icon: ClipboardList, testId: "admin-nav-results" },
   { to: "/admin/exams", label: "Online Exams", icon: MonitorPlay, testId: "admin-nav-exams" },
@@ -39,6 +40,7 @@ const PAGE_TITLES = {
   "/admin/admission": "New Admission",
   "/admin/students": "Student List",
   "/admin/promote": "Promote Batch",
+  "/admin/import": "Bulk Import",
   "/admin/results": "Test Results",
   "/admin/exams": "Online Exams",
   "/admin/materials": "Materials",

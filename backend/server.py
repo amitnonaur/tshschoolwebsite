@@ -27,6 +27,9 @@ from sms_students import student_router
 from sms_fees import fees_router
 from sms_promotions import promotion_router
 from sms_results import results_router
+from sms_exams import exams_router
+from sms_import import import_router
+from sms_content import content_router
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
@@ -591,6 +594,9 @@ app.include_router(student_router(db, get_current_admin))
 app.include_router(fees_router(db, get_current_admin))
 app.include_router(promotion_router(db, get_current_admin))
 app.include_router(results_router(db, get_current_admin))
+app.include_router(exams_router(db, get_current_admin))
+app.include_router(import_router(db, get_current_admin))
+app.include_router(content_router(db, get_current_admin))
 
 app.add_middleware(
     CORSMiddleware,
@@ -615,6 +621,11 @@ async def startup():
     await db.promotions.create_index("reg_id")
     await db.admin_logs.create_index("created_at")
     await db.import_history.create_index("created_at")
+    await db.exams.create_index("exam_id", unique=True)
+    await db.exam_attempts.create_index([("exam_id", 1), ("reg_id", 1)])
+    await db.question_bank.create_index([("class_name", 1), ("subject", 1)])
+    await db.materials.create_index("class_name")
+    await db.announcements.create_index("created_at")
     admin_email = os.environ.get("ADMIN_EMAIL", "")
     admin_password = os.environ.get("ADMIN_PASSWORD", "")
     if admin_email and admin_password:

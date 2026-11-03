@@ -25,7 +25,14 @@ import PromoteBatch from "./pages/admin/PromoteBatch";
 import TestResults from "./pages/admin/TestResults";
 import FeeManager from "./pages/admin/FeeManager";
 import AdminSettings from "./pages/admin/AdminSettings";
-import { Materials, Videos, Announcements, FinanceTracker, OnlineExams, UserManagement } from "./pages/admin/Placeholders";
+import { Videos, FinanceTracker, UserManagement } from "./pages/admin/Placeholders";
+import ExamsAdmin from "./pages/admin/ExamsAdmin";
+import ExamDetail from "./pages/admin/ExamDetail";
+import BulkImport from "./pages/admin/BulkImport";
+import MaterialsAdmin from "./pages/admin/MaterialsAdmin";
+import AnnouncementsAdmin from "./pages/admin/AnnouncementsAdmin";
+import StudentExamLogin from "./pages/StudentExamLogin";
+import { StudentExams, StudentTakeExam, StudentExamResult } from "./pages/StudentExam";
 
 function App() {
   return (
@@ -33,6 +40,10 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/admin/login" element={<AdminLogin />} />
+          <Route path="/exam-login" element={<StudentExamLogin />} />
+          <Route path="/exam" element={<StudentExams />} />
+          <Route path="/exam/:examId/take" element={<StudentTakeExam />} />
+          <Route path="/exam/:examId/result" element={<StudentExamResult />} />
           <Route path="/admin" element={<AdminLayout />}>
             <Route index element={<AdminHome />} />
             <Route path="admission" element={<AdmissionForm />} />
@@ -41,10 +52,12 @@ function App() {
             <Route path="students/:regId" element={<StudentProfile />} />
             <Route path="promote" element={<PromoteBatch />} />
             <Route path="results" element={<TestResults />} />
-            <Route path="exams" element={<OnlineExams />} />
-            <Route path="materials" element={<Materials />} />
+            <Route path="exams" element={<ExamsAdmin />} />
+            <Route path="exams/:examId" element={<ExamDetail />} />
+            <Route path="import" element={<BulkImport />} />
+            <Route path="materials" element={<MaterialsAdmin />} />
             <Route path="videos" element={<Videos />} />
-            <Route path="announcements" element={<Announcements />} />
+            <Route path="announcements" element={<AnnouncementsAdmin />} />
             <Route path="fees" element={<FeeManager />} />
             <Route path="finance" element={<FinanceTracker />} />
             <Route path="settings" element={<AdminSettings />} />
