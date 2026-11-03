@@ -16,6 +16,7 @@ const ACADEMICS_LINKS = [
 const PARENT_LINKS = [
   { to: "/parent-partnership", label: "Parent Partnership" },
   { to: "/admissions", label: "Admissions" },
+  { to: "/parents", label: "Parent Portal" },
   { to: "/videos", label: "Learning Videos" },
   { to: "/results", label: "Check Results" },
   { to: "/faq", label: "FAQ" },

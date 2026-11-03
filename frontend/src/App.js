@@ -39,7 +39,9 @@ import VideosPage from "./pages/Videos";
 import StudentResults from "./pages/StudentResults";
 import FeeReceipt from "./pages/admin/FeeReceipt";
 import AttendancePage from "./pages/admin/AttendancePage";
+import AttendanceReport from "./pages/admin/AttendanceReport";
 import AdmissionPrint from "./pages/admin/AdmissionPrint";
+import ParentsPortal from "./pages/ParentsPortal";
 
 function App() {
   return (
@@ -60,6 +62,7 @@ function App() {
             <Route path="students/:regId" element={<StudentProfile />} />
             <Route path="promote" element={<PromoteBatch />} />
             <Route path="attendance" element={<AttendancePage />} />
+            <Route path="attendance-report" element={<AttendanceReport />} />
             <Route path="results" element={<TestResults />} />
             <Route path="admission-print/:regId" element={<AdmissionPrint />} />
             <Route path="exams" element={<ExamsAdmin />} />
@@ -88,6 +91,7 @@ function App() {
             <Route path="/faq" element={<FAQ />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/videos" element={<VideosPage />} />
+            <Route path="/parents" element={<ParentsPortal />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="*" element={<NotFound />} />

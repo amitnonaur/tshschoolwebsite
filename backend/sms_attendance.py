@@ -95,4 +95,49 @@ def attendance_router(db, get_current_admin):
             "attendance_pct": round(counts["P"] / total_marked * 100, 1) if total_marked else None,
         }
 
+    @router.get("/attendance/report")
+    async def attendance_report(class_name: str, month: str, admin=Depends(get_current_admin)):
+        """month = 'YYYY-MM'. Class-wise monthly attendance report."""
+        if class_name not in ALL_CLASSES or not re.fullmatch(r"^\d{4}-\d{2}$", month):
+            raise HTTPException(status_code=400, detail="Invalid class or month")
+        students = await db.students.find(
+            {"class_name": class_name, "status": "Active"},
+            {"full_name": 1, "reg_id": 1, "roll_number": 1},
+        ).sort("roll_number", 1).to_list(500)
+        days_in_month = sorted({d["date"] for d in await db.attendance.find({"class_name": class_name, "date": {"$regex": f"^{month}"}}, {"date": 1}).to_list(40)})
+        docs = await db.attendance.find({"class_name": class_name, "date": {"$regex": f"^{month}"}}).to_list(40)
+        by_date = {d["date"]: d["records"] for d in docs}
+        rows = []
+        for s in students:
+            statuses = {}
+            counts = {"P": 0, "A": 0, "L": 0}
+            for day in days_in_month:
+                st = by_date.get(day, {}).get(s["reg_id"])
+                statuses[day] = st
+                if st in counts:
+                    counts[st] += 1
+            total = sum(counts.values())
+            rows.append({
+                "reg_id": s["reg_id"], "full_name": s["full_name"], "roll_number": s.get("roll_number"),
+                "present": counts["P"], "absent": counts["A"], "leave": counts["L"],
+                "total_marked": total,
+                "attendance_pct": round(counts["P"] / total * 100, 1) if total else None,
+                "days": statuses,
+            })
+        return {"class_name": class_name, "month": month, "days": days_in_month, "rows": rows}
+
+    @router.get("/attendance/report.csv")
+    async def attendance_report_csv(class_name: str, month: str, admin=Depends(get_current_admin)):
+        from fastapi.responses import Response
+        report = await attendance_report(class_name, month, admin)
+        header = ["Roll", "Reg ID", "Student", "Present", "Absent", "Leave", "Attendance %"] + report["days"]
+        rows = [header]
+        for r in report["rows"]:
+            rows.append([
+                r["roll_number"] or "", r["reg_id"], r["full_name"], r["present"], r["absent"], r["leave"],
+                r["attendance_pct"] if r["attendance_pct"] is not None else "",
+            ] + [r["days"].get(d, "") or "" for d in report["days"]])
+        csv = "\r\n".join(",".join('"' + str(c).replace('"', '""') + '"' for c in r) for r in rows)
+        return Response(content="﻿" + csv, media_type="text/csv", headers={"Content-Disposition": f"attachment; filename=attendance-{class_name}-{month}.csv"})
+
     return router

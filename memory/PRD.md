@@ -84,6 +84,11 @@ Build a complete, modern, responsive, admission-focused website for The Study Ho
 - Attendance Register: /admin/attendance — class+date picker, per-student Present/Absent/Leave buttons, mark-all-present, saved per class+date (unique index), re-editable, marked badge; monthly summary (P/A/L counts + %) with day grid on student profile. Sidebar item added under Academics (admin+teacher roles).
 - Admission Form PDF: /admin/admission-print/:regId — branded A4 form (logo, reg ID badge, photo box, all student/course/office fields, declaration, 3 signature lines), print/PDF via print CSS; linked from student profile header.
 
+## Implemented (3 November 2026 — Reminders, attendance report, parent portal)
+- Fee Due WhatsApp Reminders: green "Remind" button per student in Fee Manager dues table opens WhatsApp with pre-written message (parent name, student, reg ID, class, pending months, outstanding amount) to their primary mobile.
+- Attendance Report: /admin/attendance-report — class+month picker, per-student P/A/L/% + day grid, CSV export; sidebar item under Academics.
+- Parent Portal: public /parents page — 3-step login explanation, feature cards, help box; linked from Parents dropdown + footer.
+
 ## Backlog
 - P0: Owner verification of WhatsApp number (currently assumed = phone number) in school.js.
 - P1: Replace sitemap/robots preview domain with production domain after deployment; add canonical URLs.

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import axios from "axios";
 import { toast } from "sonner";
-import { Loader2, Save, Search, IndianRupee } from "lucide-react";
+import { Loader2, Save, Search, IndianRupee, MessageCircle } from "lucide-react";
 import { API } from "../../config/school";
 import { useAdmin } from "./AdminLayout";
 
@@ -184,7 +184,7 @@ const FeeManager = () => {
               <thead>
                 <tr className="text-left text-xs uppercase tracking-wider text-[#64748B] border-b border-slate-200 bg-slate-50">
                   <th className="py-3 px-5">Reg ID</th><th className="py-3 px-4">Student</th><th className="py-3 px-4">Class</th>
-                  <th className="py-3 px-4">Pending Months</th><th className="py-3 px-4">Outstanding</th>
+                  <th className="py-3 px-4">Pending Months</th><th className="py-3 px-4">Outstanding</th><th className="py-3 px-4">Reminder</th>
                 </tr>
               </thead>
               <tbody>
@@ -195,6 +195,17 @@ const FeeManager = () => {
                     <td className="py-3 px-4">{d.class_name}</td>
                     <td className="py-3 px-4 text-[#64748B]">{d.pending_months.slice(0, 4).join(", ")}{d.pending_months.length > 4 ? ` +${d.pending_months.length - 4}` : ""}</td>
                     <td className="py-3 px-4 font-semibold text-[#D97706]">{fmtInr(d.due)}</td>
+                    <td className="py-3 px-4">
+                      {d.mobile_primary && (
+                        <a
+                          href={`https://wa.me/91${d.mobile_primary}?text=${encodeURIComponent(`Namaste ${d.father_name || "Parent"} ji, this is a gentle reminder from The Study Home School. The fee payment for ${d.full_name} (${d.reg_id}, ${d.class_name}) is pending for ${d.pending_months.slice(0, 3).join(", ")}${d.pending_months.length > 3 ? " and more" : ""}. Outstanding amount: ${fmtInr(d.due)}. Kindly pay at your earliest convenience. Thank you.`)}`}
+                          target="_blank" rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 rounded-full bg-[#16A34A] hover:bg-[#15803D] text-white text-xs font-semibold px-3.5 py-1.5"
+                          data-testid={`dues-remind-${d.reg_id}`}>
+                          <MessageCircle size={12} aria-hidden="true" /> Remind
+                        </a>
+                      )}
+                    </td>
                   </tr>
                 ))}
               </tbody>

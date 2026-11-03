@@ -92,6 +92,7 @@ def fees_router(db, get_current_admin):
                 dues.append({
                     "reg_id": s["reg_id"], "full_name": s["full_name"], "course": s["course"],
                     "class_name": s["class_name"], "due": due, "pending_months": pending,
+                    "mobile_primary": s.get("mobile_primary"), "father_name": s.get("father_name"),
                 })
         # monthly revenue Apr..Mar
         revenue = {m: 0.0 for m in MONTHS}
