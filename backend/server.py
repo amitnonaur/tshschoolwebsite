@@ -22,6 +22,12 @@ import bcrypt
 import jwt
 import httpx
 
+from sms_utils import current_session, session_dates
+from sms_students import student_router
+from sms_fees import fees_router
+from sms_promotions import promotion_router
+from sms_results import results_router
+
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
 
@@ -523,7 +529,68 @@ async def create_contact(payload: ContactIn, request: Request):
     return {"success": True, "message": "Thank you! Your message has been received. We will get back to you soon."}
 
 
+# ---------------- Admin dashboard stats ----------------
+
+@api_router.get("/admin/stats")
+async def admin_stats(session: str = "", admin=Depends(get_current_admin)):
+    session = session or current_session()
+    now = datetime.now(timezone.utc)
+    month_start = now.replace(day=1).isoformat()
+    total = await db.students.count_documents({"session": session, "status": {"$ne": "Archived"}})
+    active = await db.students.count_documents({"session": session, "status": "Active"})
+    inactive = await db.students.count_documents({"session": session, "status": "Inactive"})
+    new_this_month = await db.students.count_documents({"session": session, "created_at": {"$gte": month_start}})
+    left = await db.students.count_documents({"session": session, "exit_reason": {"$exists": True}})
+    # course distribution
+    course_counts = {}
+    async for row in db.students.aggregate([
+        {"$match": {"session": session, "status": "Active"}},
+        {"$group": {"_id": "$course", "count": {"$sum": 1}}},
+    ]):
+        course_counts[row["_id"]] = row["count"]
+    recent_students = await db.students.find(
+        {"status": {"$ne": "Archived"}},
+        {"full_name": 1, "reg_id": 1, "class_name": 1, "created_at": 1},
+    ).sort("created_at", -1).limit(5).to_list(5)
+    recent_payments = await db.fee_payments.find().sort("created_at", -1).limit(5).to_list(5)
+    stu_names = {s["reg_id"]: s["full_name"] for s in await db.students.find({}, {"reg_id": 1, "full_name": 1}).to_list(5000)}
+    sessions = await db.students.distinct("session")
+    if session not in sessions:
+        sessions.append(session)
+    start, end = session_dates(session)
+    return {
+        "session": session,
+        "session_start": start,
+        "session_end": end,
+        "available_sessions": sorted(set(sessions), reverse=True),
+        "total_students": total,
+        "active_students": active,
+        "inactive_students": inactive,
+        "new_this_month": new_this_month,
+        "left_this_session": left,
+        "course_counts": course_counts,
+        "recent_students": [
+            {"reg_id": s["reg_id"], "full_name": s["full_name"], "class_name": s["class_name"], "created_at": s.get("created_at")}
+            for s in recent_students
+        ],
+        "recent_payments": [
+            {"reg_id": p["reg_id"], "full_name": stu_names.get(p["reg_id"], p["reg_id"]), "amount": p["amount"], "month": p.get("month"), "created_at": p.get("created_at")}
+            for p in recent_payments
+        ],
+    }
+
+
+@api_router.get("/admin/logs")
+async def admin_logs(admin=Depends(get_current_admin)):
+    docs = await db.admin_logs.find().sort("created_at", -1).limit(100).to_list(100)
+    return [{"id": str(d["_id"]), "admin_email": d.get("admin_email"), "action": d.get("action"), "detail": d.get("detail"), "created_at": d.get("created_at")} for d in docs]
+
+
 app.include_router(api_router)
+app.include_router(student_router(db, get_current_admin))
+app.include_router(fees_router(db, get_current_admin))
+app.include_router(promotion_router(db, get_current_admin))
+app.include_router(results_router(db, get_current_admin))
 
 app.add_middleware(
     CORSMiddleware,
@@ -540,6 +607,14 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(level
 async def startup():
     await db.users.create_index("email", unique=True)
     await db.login_attempts.create_index("identifier")
+    await db.students.create_index("reg_id", unique=True)
+    await db.students.create_index([("session", 1), ("class_name", 1)])
+    await db.students.create_index("full_name")
+    await db.fee_payments.create_index([("reg_id", 1), ("session", 1), ("month", 1)], unique=True)
+    await db.test_results.create_index([("course", 1), ("class_name", 1), ("month", 1), ("year", 1)], unique=True)
+    await db.promotions.create_index("reg_id")
+    await db.admin_logs.create_index("created_at")
+    await db.import_history.create_index("created_at")
     admin_email = os.environ.get("ADMIN_EMAIL", "")
     admin_password = os.environ.get("ADMIN_PASSWORD", "")
     if admin_email and admin_password:

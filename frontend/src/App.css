@@ -1,0 +1,8 @@
+@media print {
+  header, aside, nav, .print\:hidden, [data-testid="announcement-bar"], [data-testid="mobile-sticky-enquiry-btn"], [data-testid="whatsapp-floating-btn"] {
+    display: none !important;
+  }
+  body {
+    background: #fff !important;
+  }
+}

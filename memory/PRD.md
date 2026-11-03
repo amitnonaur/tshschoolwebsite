@@ -49,6 +49,19 @@ Build a complete, modern, responsive, admission-focused website for The Study Ho
 - Custom domain: full connection guide given to user (Domain tab → Auto-link or manual A/CNAME records); domain thestudyhomeschool.in to be connected by user; sitemap/robots/FRONTEND_URL need updating to the new domain once connected.
 - WhatsApp enquiry alerts: user chose to skip (email alerts suffice).
 
+## Implemented (3 November 2026 — Admin Panel Phases 2–6)
+- Admin shell: dark navy sidebar (#123D62) + teal active nav (#14B8A6), 15 nav items grouped MAIN/STUDENT MANAGEMENT/ACADEMICS/COMMUNICATION/FINANCE/SYSTEM, topbar with page title/date/admin, responsive mobile drawer.
+- Registration IDs: TSH{session}{seq:04d} (e.g. TSH26270001), sequence continues across sessions; academic session rolls over every 1 April (2627 → 2728).
+- New Admission: full form (student/parent/course/office), photo upload with preview (base64, max 2MB), auto course+fee defaults, roll uniqueness per class+session, Reg ID auto-generation, edit mode with change history, print/PDF via print CSS.
+- Student List: search (name/reg/father/mobile), filters (course/class/session/status), pagination, CSV export, archive/restore (never delete).
+- Student Profile: all sections incl. fee history + change history.
+- Fee Manager: default annual fees per class (auto-fill), record payments (month/method/note), duplicate month payment blocked (unique index), dues list, summary cards; dashboard fee&due tracker + revenue chart + course doughnut — all from real DB records.
+- Promote Batch: fetch, per-student decision (Promote/Hold Back/Transfer Out/Mark Inactive), auto/manual roll assignment with duplicate checks, confirmation, immutable promotion history; session dates update on promotion.
+- Test Results: fetch batch, per-subject max marks, absent handling (blank=null), auto total/pct/grade (A+..F), standard competition tie ranking, save draft vs publish, reloads saved results, ranking card (top 3, top 10, averages, high/low), CSV export.
+- Verified E2E: admitted Rohan Verma (TSH26270003), recorded May payment (due 18,000→16,500), promoted 2 students Class 2→3 (rolls auto-assigned 1,2) + held back 1, history shows 3 rows, profile sessions consistent.
+- Placeholders (explicitly deferred per user spec, no invented logic): Materials, Videos, Announcements, Finance Tracker, User Management.
+- Note: MongoDB standalone → no multi-doc transactions; promotion uses pre-validation + sequential writes with full history records.
+
 ## Backlog
 - P0: Owner verification of WhatsApp number (currently assumed = phone number) in school.js.
 - P1: Replace sitemap/robots preview domain with production domain after deployment; add canonical URLs.
@@ -57,7 +70,9 @@ Build a complete, modern, responsive, admission-focused website for The Study Ho
 - P2: Hindi language version (Devanagari font support already planned).
 - P2: When domain connects, update sitemap.xml/robots.txt domain, backend FRONTEND_URL, and add canonical URLs.
 
-## Next tasks
-1. Confirm WhatsApp number with owner.
-2. Flip admissionStatus to "open" when admissions formally open.
-3. Production domain → update sitemap/robots + canonical URLs.
+## Next tasks (Admin Panel remaining phases)
+1. Phase 7: Online Exams (question bank, schedule/publish, live monitor, student Reg ID + DOB login at a public exam URL, server-timed attempts, auto-evaluation, result publication).
+2. Phase 8: Materials / Videos / Announcements / Finance Tracker / User Management — build only after user confirms each workflow (user explicitly forbade inventing business logic).
+3. Phase 9: Bulk data import (Excel/CSV template download, column mapping, preview, validation, duplicate detection, import history).
+4. Phase 10: Full integration testing + responsive testing; redeploy to live site.
+5. Owner: upload Admin Panel reference screenshots (paper admission form, fee manager, etc.) for pixel-matching.
