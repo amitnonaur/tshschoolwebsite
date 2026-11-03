@@ -25,7 +25,9 @@ import PromoteBatch from "./pages/admin/PromoteBatch";
 import TestResults from "./pages/admin/TestResults";
 import FeeManager from "./pages/admin/FeeManager";
 import AdminSettings from "./pages/admin/AdminSettings";
-import { Videos, FinanceTracker, UserManagement } from "./pages/admin/Placeholders";
+import VideosAdmin from "./pages/admin/VideosAdmin";
+import FinanceTracker from "./pages/admin/FinanceTracker";
+import UserManagement from "./pages/admin/UserManagement";
 import ExamsAdmin from "./pages/admin/ExamsAdmin";
 import ExamDetail from "./pages/admin/ExamDetail";
 import BulkImport from "./pages/admin/BulkImport";
@@ -56,7 +58,7 @@ function App() {
             <Route path="exams/:examId" element={<ExamDetail />} />
             <Route path="import" element={<BulkImport />} />
             <Route path="materials" element={<MaterialsAdmin />} />
-            <Route path="videos" element={<Videos />} />
+            <Route path="videos" element={<VideosAdmin />} />
             <Route path="announcements" element={<AnnouncementsAdmin />} />
             <Route path="fees" element={<FeeManager />} />
             <Route path="finance" element={<FinanceTracker />} />

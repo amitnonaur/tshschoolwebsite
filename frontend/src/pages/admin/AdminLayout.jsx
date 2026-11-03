@@ -14,25 +14,25 @@ export const useAdmin = () => useContext(AdminCtx);
 
 const NAV = [
   { section: "MAIN" },
-  { to: "/admin", label: "Dashboard", icon: LayoutDashboard, end: true, testId: "admin-nav-dashboard" },
-  { section: "STUDENT MANAGEMENT" },
-  { to: "/admin/admission", label: "New Admission", icon: UserPlus, testId: "admin-nav-admission" },
-  { to: "/admin/students", label: "Student List", icon: Users, testId: "admin-nav-students" },
-  { to: "/admin/promote", label: "Promote Batch", icon: ArrowUpRightSquare, testId: "admin-nav-promote" },
-  { to: "/admin/import", label: "Bulk Import", icon: Upload, testId: "admin-nav-import" },
-  { section: "ACADEMICS" },
-  { to: "/admin/results", label: "Test Results", icon: ClipboardList, testId: "admin-nav-results" },
-  { to: "/admin/exams", label: "Online Exams", icon: MonitorPlay, testId: "admin-nav-exams" },
-  { to: "/admin/materials", label: "Materials", icon: BookOpen, testId: "admin-nav-materials" },
-  { to: "/admin/videos", label: "Videos", icon: Video, testId: "admin-nav-videos" },
-  { section: "COMMUNICATION" },
-  { to: "/admin/announcements", label: "Announcements", icon: Megaphone, testId: "admin-nav-announcements" },
-  { section: "FINANCE" },
-  { to: "/admin/fees", label: "Fee Manager", icon: Wallet, testId: "admin-nav-fees" },
-  { to: "/admin/finance", label: "Finance Tracker", icon: LineChart, testId: "admin-nav-finance" },
-  { section: "SYSTEM" },
-  { to: "/admin/settings", label: "Admin Settings", icon: Settings, testId: "admin-nav-settings" },
-  { to: "/admin/users", label: "User Management", icon: UsersRound, testId: "admin-nav-users" },
+  { to: "/admin", label: "Dashboard", icon: LayoutDashboard, end: true, testId: "admin-nav-dashboard", roles: ["admin", "accountant", "teacher"] },
+  { section: "STUDENT MANAGEMENT", roles: ["admin"] },
+  { to: "/admin/admission", label: "New Admission", icon: UserPlus, testId: "admin-nav-admission", roles: ["admin"] },
+  { to: "/admin/students", label: "Student List", icon: Users, testId: "admin-nav-students", roles: ["admin", "teacher", "accountant"] },
+  { to: "/admin/promote", label: "Promote Batch", icon: ArrowUpRightSquare, testId: "admin-nav-promote", roles: ["admin"] },
+  { to: "/admin/import", label: "Bulk Import", icon: Upload, testId: "admin-nav-import", roles: ["admin"] },
+  { section: "ACADEMICS", roles: ["admin", "teacher"] },
+  { to: "/admin/results", label: "Test Results", icon: ClipboardList, testId: "admin-nav-results", roles: ["admin", "teacher"] },
+  { to: "/admin/exams", label: "Online Exams", icon: MonitorPlay, testId: "admin-nav-exams", roles: ["admin", "teacher"] },
+  { to: "/admin/materials", label: "Materials", icon: BookOpen, testId: "admin-nav-materials", roles: ["admin", "teacher"] },
+  { to: "/admin/videos", label: "Videos", icon: Video, testId: "admin-nav-videos", roles: ["admin", "teacher"] },
+  { section: "COMMUNICATION", roles: ["admin", "teacher"] },
+  { to: "/admin/announcements", label: "Announcements", icon: Megaphone, testId: "admin-nav-announcements", roles: ["admin", "teacher"] },
+  { section: "FINANCE", roles: ["admin", "accountant"] },
+  { to: "/admin/fees", label: "Fee Manager", icon: Wallet, testId: "admin-nav-fees", roles: ["admin", "accountant"] },
+  { to: "/admin/finance", label: "Finance Tracker", icon: LineChart, testId: "admin-nav-finance", roles: ["admin", "accountant"] },
+  { section: "SYSTEM", roles: ["admin", "accountant", "teacher"] },
+  { to: "/admin/settings", label: "Admin Settings", icon: Settings, testId: "admin-nav-settings", roles: ["admin", "accountant", "teacher"] },
+  { to: "/admin/users", label: "User Management", icon: UsersRound, testId: "admin-nav-users", roles: ["admin"] },
 ];
 
 const PAGE_TITLES = {
@@ -108,7 +108,7 @@ const AdminLayout = () => {
         </div>
       </div>
       <nav className="flex-1 overflow-y-auto py-4 px-3" aria-label="Admin navigation">
-        {NAV.map((item, i) =>
+        {NAV.filter((item) => !item.roles || (admin && item.roles.includes(admin.role))).map((item, i) =>
           item.section ? (
             <p key={i} className="px-3 pt-4 pb-1.5 text-[10px] font-bold uppercase tracking-widest text-[#6B87A3]">{item.section}</p>
           ) : (
@@ -172,7 +172,7 @@ const AdminLayout = () => {
             <div className="flex items-center gap-3 shrink-0">
               <div className="text-right hidden sm:block">
                 <p className="text-sm font-semibold text-[#123D62]" data-testid="admin-user-name">{admin?.name}</p>
-                <p className="text-xs text-[#64748B] capitalize">{admin?.role === "super_admin" ? "Super Administrator" : "Administrator"}</p>
+                <p className="text-xs text-[#64748B] capitalize">{admin?.role === "super_admin" ? "Super Administrator" : admin?.role === "teacher" ? "Teacher" : admin?.role === "accountant" ? "Accountant" : "Administrator"}</p>
               </div>
               <div className="w-10 h-10 rounded-full bg-[#123D62] text-white flex items-center justify-center font-bold text-sm" aria-hidden="true">
                 {(admin?.name || "A").slice(0, 1).toUpperCase()}

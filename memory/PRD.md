@@ -69,6 +69,12 @@ Build a complete, modern, responsive, admission-focused website for The Study Ho
 - Announcements: post with audience (All/class), list, delete.
 - Videos, Finance Tracker, User Management remain placeholders pending owner workflow rules.
 
+## Implemented (3 November 2026 — Phase 10: Videos, Finance, Staff)
+- Videos: YouTube-link module — admin pastes watch/share/shorts URL per class+subject, thumbnails auto-loaded, class filter, delete. URL validated server-side.
+- Finance Tracker: two sections — Investment (furniture/building/computers/books/play area/electrical/other) and Operational Cost (salaries/rent/utilities/stationery/maintenance/transport/events/internet/other). Summary cards: fee collection, investment, operational, net. Entries + CSV export, session-tagged.
+- Staff accounts: roles admin/accountant/teacher; create users (bcrypt), activate/deactivate, role-filtered sidebar, backend require_roles enforcement (finance admin+accountant; videos admin+teacher; users admin-only). Login now accepts any role (was admin-only).
+- Placeholder module count is now zero — all 15 sidebar modules are functional.
+
 ## Backlog
 - P0: Owner verification of WhatsApp number (currently assumed = phone number) in school.js.
 - P1: Replace sitemap/robots preview domain with production domain after deployment; add canonical URLs.

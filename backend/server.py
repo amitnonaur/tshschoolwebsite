@@ -30,6 +30,7 @@ from sms_results import results_router
 from sms_exams import exams_router
 from sms_import import import_router
 from sms_content import content_router
+from sms_extras import extras_router
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
@@ -317,7 +318,18 @@ async def get_current_admin(request: Request) -> dict:
     user = await db.users.find_one({"_id": ObjectId(payload["sub"])})
     if not user:
         raise HTTPException(status_code=401, detail="User not found")
+    if user.get("active") is False:
+        raise HTTPException(status_code=403, detail="This account has been deactivated.")
     return {"id": str(user["_id"]), "email": user["email"], "name": user.get("name", "Admin"), "role": user.get("role", "admin")}
+
+
+def require_roles(*roles):
+    async def checker(request: Request) -> dict:
+        user = await get_current_admin(request)
+        if roles and user["role"] not in roles:
+            raise HTTPException(status_code=403, detail="You do not have permission for this action.")
+        return user
+    return checker
 
 
 class LoginIn(BaseModel):
@@ -337,7 +349,7 @@ async def login(payload: LoginIn, request: Request, response: Response):
     record = await db.login_attempts.find_one({"identifier": identifier})
     if record and record.get("locked_until") and record["locked_until"] > datetime.now(timezone.utc):
         raise HTTPException(status_code=429, detail="Too many failed attempts. Please try again in 15 minutes.")
-    user = await db.users.find_one({"email": email, "role": "admin"})
+    user = await db.users.find_one({"email": email})
     if not user or not verify_password(payload.password, user["password_hash"]):
         attempts = (record or {}).get("attempts", 0) + 1
         update = {"identifier": identifier, "attempts": attempts}
@@ -597,6 +609,7 @@ app.include_router(results_router(db, get_current_admin))
 app.include_router(exams_router(db, get_current_admin))
 app.include_router(import_router(db, get_current_admin))
 app.include_router(content_router(db, get_current_admin))
+app.include_router(extras_router(db, get_current_admin, require_roles))
 
 app.add_middleware(
     CORSMiddleware,
@@ -626,6 +639,8 @@ async def startup():
     await db.question_bank.create_index([("class_name", 1), ("subject", 1)])
     await db.materials.create_index("class_name")
     await db.announcements.create_index("created_at")
+    await db.videos.create_index("video_id", unique=True)
+    await db.finance_entries.create_index([("session", 1), ("kind", 1)])
     admin_email = os.environ.get("ADMIN_EMAIL", "")
     admin_password = os.environ.get("ADMIN_PASSWORD", "")
     if admin_email and admin_password:
