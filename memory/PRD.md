@@ -80,6 +80,10 @@ Build a complete, modern, responsive, admission-focused website for The Study Ho
 - Public Video Gallery: /videos — class filter chips, YouTube thumbnails, watch links; fed by the admin Videos module. Added to header Parents dropdown + footer.
 - Fee Receipts: /admin/receipt/:paymentId — branded A4 receipt (logo, school details, receipt no, student/class/father, month, method, amount in words via num-to-words, signature line), print/PDF via print CSS. "Receipt" link per payment in student profile fee history.
 
+## Implemented (3 November 2026 — Attendance + Admission Print)
+- Attendance Register: /admin/attendance — class+date picker, per-student Present/Absent/Leave buttons, mark-all-present, saved per class+date (unique index), re-editable, marked badge; monthly summary (P/A/L counts + %) with day grid on student profile. Sidebar item added under Academics (admin+teacher roles).
+- Admission Form PDF: /admin/admission-print/:regId — branded A4 form (logo, reg ID badge, photo box, all student/course/office fields, declaration, 3 signature lines), print/PDF via print CSS; linked from student profile header.
+
 ## Backlog
 - P0: Owner verification of WhatsApp number (currently assumed = phone number) in school.js.
 - P1: Replace sitemap/robots preview domain with production domain after deployment; add canonical URLs.

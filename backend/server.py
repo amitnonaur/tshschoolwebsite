@@ -32,6 +32,7 @@ from sms_import import import_router
 from sms_content import content_router
 from sms_extras import extras_router
 from sms_public import public_router
+from sms_attendance import attendance_router
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
@@ -612,6 +613,7 @@ app.include_router(import_router(db, get_current_admin))
 app.include_router(content_router(db, get_current_admin))
 app.include_router(extras_router(db, get_current_admin, require_roles))
 app.include_router(public_router(db, get_current_admin))
+app.include_router(attendance_router(db, get_current_admin))
 
 app.add_middleware(
     CORSMiddleware,
@@ -643,6 +645,7 @@ async def startup():
     await db.announcements.create_index("created_at")
     await db.videos.create_index("video_id", unique=True)
     await db.finance_entries.create_index([("session", 1), ("kind", 1)])
+    await db.attendance.create_index([("class_name", 1), ("date", 1)], unique=True)
     admin_email = os.environ.get("ADMIN_EMAIL", "")
     admin_password = os.environ.get("ADMIN_PASSWORD", "")
     if admin_email and admin_password:

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { toast } from "sonner";
-import { Pencil, Printer, Phone, Archive, RotateCcw, IndianRupee } from "lucide-react";
+import { Pencil, Printer, Phone, Archive, RotateCcw, IndianRupee, CalendarCheck, FileText } from "lucide-react";
 import { API } from "../../config/school";
 
 const fmtInr = (n) => "₹" + Number(n || 0).toLocaleString("en-IN");
@@ -25,17 +25,20 @@ const StudentProfile = () => {
   const { regId } = useParams();
   const [student, setStudent] = useState(null);
   const [fees, setFees] = useState(null);
+  const [attendance, setAttendance] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     (async () => {
       try {
-        const [s, f] = await Promise.all([
+        const [s, f, a] = await Promise.all([
           axios.get(`${API}/students/${regId}`, { withCredentials: true }),
           axios.get(`${API}/fees/student/${regId}`, { withCredentials: true }),
+          axios.get(`${API}/attendance/student/${regId}`, { withCredentials: true }),
         ]);
         setStudent(s.data);
         setFees(f.data);
+        setAttendance(a.data);
       } catch {
         toast.error("Student not found");
       } finally {
@@ -81,10 +84,15 @@ const StudentProfile = () => {
               data-testid="profile-edit-btn">
               <Pencil size={13} aria-hidden="true" /> Edit
             </Link>
+            <Link to={`/admin/admission-print/${student.reg_id}`}
+              className="inline-flex items-center gap-1.5 rounded-full border border-slate-300 bg-white text-[#123D62] text-xs font-semibold px-4 py-2 hover:bg-slate-50"
+              data-testid="profile-admission-form-btn">
+              <FileText size={13} aria-hidden="true" /> Admission Form
+            </Link>
             <button type="button" onClick={() => window.print()}
               className="inline-flex items-center gap-1.5 rounded-full border border-slate-300 bg-white text-[#123D62] text-xs font-semibold px-4 py-2 hover:bg-slate-50"
               data-testid="profile-print-btn">
-              <Printer size={13} aria-hidden="true" /> Print / PDF
+              <Printer size={13} aria-hidden="true" /> Print Profile
             </button>
             {student.status === "Archived" ? (
               <button type="button" onClick={() => setStatus("Active")}
@@ -166,6 +174,33 @@ const StudentProfile = () => {
               </tbody>
             </table>
           </div>
+        )}
+      </Section>
+
+      <Section title={`Attendance — ${attendance?.month || ""}`} testId="profile-attendance">
+        {!attendance || attendance.total_marked === 0 ? (
+          <p className="text-sm text-[#64748B]" data-testid="attendance-empty">No attendance marked this month yet.</p>
+        ) : (
+          <>
+            <div className="flex flex-wrap gap-4 text-sm mb-4" data-testid="attendance-summary">
+              <span className="rounded-full bg-[#EDF9F0] text-[#16A34A] font-semibold px-4 py-1.5">Present: {attendance.present}</span>
+              <span className="rounded-full bg-red-50 text-red-600 font-semibold px-4 py-1.5">Absent: {attendance.absent}</span>
+              <span className="rounded-full bg-[#FDF6EC] text-[#D97706] font-semibold px-4 py-1.5">Leave: {attendance.leave}</span>
+              {attendance.attendance_pct != null && (
+                <span className="rounded-full bg-[#EAF0F8] text-[#0756A5] font-semibold px-4 py-1.5" data-testid="attendance-pct">{attendance.attendance_pct}% present</span>
+              )}
+            </div>
+            <div className="flex flex-wrap gap-1.5" data-testid="attendance-days">
+              {attendance.days.map((d) => (
+                <span key={d.date} title={d.date}
+                  className={`w-8 h-8 inline-flex items-center justify-center rounded-lg text-[10px] font-bold ${
+                    d.status === "P" ? "bg-[#EDF9F0] text-[#16A34A]" : d.status === "A" ? "bg-red-50 text-red-600" : "bg-[#FDF6EC] text-[#D97706]"
+                  }`}>
+                  {d.date.slice(8)}
+                </span>
+              ))}
+            </div>
+          </>
         )}
       </Section>
 

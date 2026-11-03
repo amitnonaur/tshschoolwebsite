@@ -38,6 +38,8 @@ import { StudentExams, StudentTakeExam, StudentExamResult } from "./pages/Studen
 import VideosPage from "./pages/Videos";
 import StudentResults from "./pages/StudentResults";
 import FeeReceipt from "./pages/admin/FeeReceipt";
+import AttendancePage from "./pages/admin/AttendancePage";
+import AdmissionPrint from "./pages/admin/AdmissionPrint";
 
 function App() {
   return (
@@ -57,7 +59,9 @@ function App() {
             <Route path="students" element={<StudentList />} />
             <Route path="students/:regId" element={<StudentProfile />} />
             <Route path="promote" element={<PromoteBatch />} />
+            <Route path="attendance" element={<AttendancePage />} />
             <Route path="results" element={<TestResults />} />
+            <Route path="admission-print/:regId" element={<AdmissionPrint />} />
             <Route path="exams" element={<ExamsAdmin />} />
             <Route path="exams/:examId" element={<ExamDetail />} />
             <Route path="import" element={<BulkImport />} />
