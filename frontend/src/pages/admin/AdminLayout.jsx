@@ -4,7 +4,7 @@ import axios from "axios";
 import { toast } from "sonner";
 import {
   LayoutDashboard, UserPlus, Users, ArrowUpRightSquare, ClipboardList, MonitorPlay,
-  BookOpen, Video, Megaphone, Wallet, LineChart, Settings, UsersRound, LogOut, Menu, X, Upload, CalendarCheck, CalendarRange,
+  BookOpen, Video, Megaphone, Wallet, LineChart, Settings, UsersRound, LogOut, Menu, X, Upload, CalendarCheck, CalendarRange, ImageIcon,
 } from "lucide-react";
 import { API } from "../../config/school";
 import { LogoMark } from "../../components/Logo";
@@ -30,6 +30,7 @@ const NAV = [
   { to: "/admin/videos", label: "Videos", icon: Video, testId: "admin-nav-videos", roles: ["admin", "teacher"] },
   { section: "COMMUNICATION", roles: ["admin", "teacher"] },
   { to: "/admin/announcements", label: "Announcements", icon: Megaphone, testId: "admin-nav-announcements", roles: ["admin", "teacher"] },
+  { to: "/admin/gallery", label: "Photo Gallery", icon: ImageIcon, testId: "admin-nav-gallery", roles: ["admin"] },
   { section: "FINANCE", roles: ["admin", "accountant"] },
   { to: "/admin/fees", label: "Fee Manager", icon: Wallet, testId: "admin-nav-fees", roles: ["admin", "accountant"] },
   { to: "/admin/finance", label: "Finance Tracker", icon: LineChart, testId: "admin-nav-finance", roles: ["admin", "accountant"] },
@@ -52,6 +53,7 @@ const PAGE_TITLES = {
   "/admin/materials": "Materials",
   "/admin/videos": "Videos",
   "/admin/announcements": "Announcements",
+  "/admin/gallery": "Photo Gallery",
   "/admin/fees": "Fee Manager",
   "/admin/finance": "Finance Tracker",
   "/admin/settings": "Admin Settings",

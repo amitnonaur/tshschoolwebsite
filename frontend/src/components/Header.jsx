@@ -18,6 +18,7 @@ const PARENT_LINKS = [
   { to: "/admissions", label: "Admissions" },
   { to: "/parents", label: "Parent Portal" },
   { to: "/videos", label: "Learning Videos" },
+  { to: "/gallery", label: "Photo Gallery" },
   { to: "/results", label: "Check Results" },
   { to: "/faq", label: "FAQ" },
 ];

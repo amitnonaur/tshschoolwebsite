@@ -44,6 +44,8 @@ import AdmissionPrint from "./pages/admin/AdmissionPrint";
 import ParentsPortal from "./pages/ParentsPortal";
 import TimetablePage from "./pages/admin/TimetablePage";
 import IDCard from "./pages/admin/IDCard";
+import GalleryAdmin from "./pages/admin/GalleryAdmin";
+import Gallery from "./pages/Gallery";
 
 function App() {
   return (
@@ -67,6 +69,7 @@ function App() {
             <Route path="attendance-report" element={<AttendanceReport />} />
             <Route path="timetable" element={<TimetablePage />} />
             <Route path="idcard/:regId" element={<IDCard />} />
+            <Route path="gallery" element={<GalleryAdmin />} />
             <Route path="results" element={<TestResults />} />
             <Route path="admission-print/:regId" element={<AdmissionPrint />} />
             <Route path="exams" element={<ExamsAdmin />} />
@@ -96,6 +99,7 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/videos" element={<VideosPage />} />
             <Route path="/parents" element={<ParentsPortal />} />
+            <Route path="/gallery" element={<Gallery />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="*" element={<NotFound />} />

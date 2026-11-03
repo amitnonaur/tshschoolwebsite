@@ -37,6 +37,7 @@ const Footer = () => (
           <li><Link className="hover:text-white transition-colors" to="/admissions" data-testid="footer-link-admissions">Admissions</Link></li>
           <li><Link className="hover:text-white transition-colors" to="/parents" data-testid="footer-link-parent-portal">Parent Portal</Link></li>
           <li><Link className="hover:text-white transition-colors" to="/videos" data-testid="footer-link-videos">Learning Videos</Link></li>
+          <li><Link className="hover:text-white transition-colors" to="/gallery" data-testid="footer-link-gallery">Photo Gallery</Link></li>
           <li><Link className="hover:text-white transition-colors" to="/results" data-testid="footer-link-results">Check Results</Link></li>
           <li><Link className="hover:text-white transition-colors" to="/parent-partnership" data-testid="footer-link-parent-partnership">Parent Partnership</Link></li>
           <li><Link className="hover:text-white transition-colors" to="/faq" data-testid="footer-link-faq">FAQ</Link></li>

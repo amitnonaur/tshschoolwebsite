@@ -650,7 +650,7 @@ async def startup():
     await db.finance_entries.create_index([("session", 1), ("kind", 1)])
     await db.attendance.create_index([("class_name", 1), ("date", 1)], unique=True)
     await db.timetables.create_index("class_name", unique=True)
-    await db.timetables.create_index("class_name", unique=True)
+    await db.gallery.create_index("created_at")
     admin_email = os.environ.get("ADMIN_EMAIL", "")
     admin_password = os.environ.get("ADMIN_PASSWORD", "")
     if admin_email and admin_password:

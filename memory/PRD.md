@@ -95,6 +95,9 @@ Build a complete, modern, responsive, admission-focused website for The Study Ho
 - ID Card Generator: /admin/idcard/:regId — branded card (logo header, photo, name, Reg ID, class+roll, session, DOB, father, mobile, validity footer), print button; linked from student profile.
 - Backup Export: /admin/backup — one-tap .xlsx download with 6 sheets (Students, Fee Payments, Finance, Attendance, Test Results, Promotions); button in Admin Settings.
 
+## Implemented (3 November 2026 — Photo Gallery)
+- Photo Gallery: admin upload page at /admin/gallery (title/category/caption/photo ≤5MB, delete on hover) + public page at /gallery with category filter chips and lightbox. Linked in header Parents dropdown and footer.
+
 ## Backlog
 - P0: Owner verification of WhatsApp number (currently assumed = phone number) in school.js.
 - P1: Replace sitemap/robots preview domain with production domain after deployment; add canonical URLs.
