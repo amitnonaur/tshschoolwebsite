@@ -35,6 +35,9 @@ import MaterialsAdmin from "./pages/admin/MaterialsAdmin";
 import AnnouncementsAdmin from "./pages/admin/AnnouncementsAdmin";
 import StudentExamLogin from "./pages/StudentExamLogin";
 import { StudentExams, StudentTakeExam, StudentExamResult } from "./pages/StudentExam";
+import VideosPage from "./pages/Videos";
+import StudentResults from "./pages/StudentResults";
+import FeeReceipt from "./pages/admin/FeeReceipt";
 
 function App() {
   return (
@@ -46,6 +49,7 @@ function App() {
           <Route path="/exam" element={<StudentExams />} />
           <Route path="/exam/:examId/take" element={<StudentTakeExam />} />
           <Route path="/exam/:examId/result" element={<StudentExamResult />} />
+          <Route path="/results" element={<StudentResults />} />
           <Route path="/admin" element={<AdminLayout />}>
             <Route index element={<AdminHome />} />
             <Route path="admission" element={<AdmissionForm />} />
@@ -61,6 +65,7 @@ function App() {
             <Route path="videos" element={<VideosAdmin />} />
             <Route path="announcements" element={<AnnouncementsAdmin />} />
             <Route path="fees" element={<FeeManager />} />
+            <Route path="receipt/:paymentId" element={<FeeReceipt />} />
             <Route path="finance" element={<FinanceTracker />} />
             <Route path="settings" element={<AdminSettings />} />
             <Route path="users" element={<UserManagement />} />
@@ -78,6 +83,7 @@ function App() {
             <Route path="/admissions" element={<Admissions />} />
             <Route path="/faq" element={<FAQ />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/videos" element={<VideosPage />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="*" element={<NotFound />} />

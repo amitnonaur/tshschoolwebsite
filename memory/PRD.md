@@ -75,6 +75,11 @@ Build a complete, modern, responsive, admission-focused website for The Study Ho
 - Staff accounts: roles admin/accountant/teacher; create users (bcrypt), activate/deactivate, role-filtered sidebar, backend require_roles enforcement (finance admin+accountant; videos admin+teacher; users admin-only). Login now accepts any role (was admin-only).
 - Placeholder module count is now zero — all 15 sidebar modules are functional.
 
+## Implemented (3 November 2026 — Public portal, gallery, receipts)
+- Student Result Portal: /results — student logs in at /exam-login (Reg ID + DOB) and sees published monthly test results (marks per subject, total, %, grade, rank, class average) and published online exam scores. Header has My Exams + Logout links.
+- Public Video Gallery: /videos — class filter chips, YouTube thumbnails, watch links; fed by the admin Videos module. Added to header Parents dropdown + footer.
+- Fee Receipts: /admin/receipt/:paymentId — branded A4 receipt (logo, school details, receipt no, student/class/father, month, method, amount in words via num-to-words, signature line), print/PDF via print CSS. "Receipt" link per payment in student profile fee history.
+
 ## Backlog
 - P0: Owner verification of WhatsApp number (currently assumed = phone number) in school.js.
 - P1: Replace sitemap/robots preview domain with production domain after deployment; add canonical URLs.

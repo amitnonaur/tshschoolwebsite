@@ -158,7 +158,9 @@ const StudentProfile = () => {
                     <td className="py-2.5 pr-4">{fmtInr(p.amount)}</td>
                     <td className="py-2.5 pr-4">{p.method}</td>
                     <td className="py-2.5 pr-4">{p.date}</td>
-                    <td className="py-2.5 text-[#64748B]">{p.note || "—"}</td>
+                    <td className="py-2.5">
+                      <Link to={`/admin/receipt/${p.id}`} className="text-[#0756A5] text-xs font-semibold hover:underline" data-testid={`receipt-link-${p.id}`}>Receipt</Link>
+                    </td>
                   </tr>
                 ))}
               </tbody>

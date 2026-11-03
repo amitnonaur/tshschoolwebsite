@@ -31,6 +31,7 @@ from sms_exams import exams_router
 from sms_import import import_router
 from sms_content import content_router
 from sms_extras import extras_router
+from sms_public import public_router
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
@@ -610,6 +611,7 @@ app.include_router(exams_router(db, get_current_admin))
 app.include_router(import_router(db, get_current_admin))
 app.include_router(content_router(db, get_current_admin))
 app.include_router(extras_router(db, get_current_admin, require_roles))
+app.include_router(public_router(db, get_current_admin))
 
 app.add_middleware(
     CORSMiddleware,

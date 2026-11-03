@@ -35,6 +35,8 @@ const Footer = () => (
         <h2 className="text-white text-sm font-bold uppercase tracking-wider mb-4">Parents</h2>
         <ul className="space-y-2.5 text-sm">
           <li><Link className="hover:text-white transition-colors" to="/admissions" data-testid="footer-link-admissions">Admissions</Link></li>
+          <li><Link className="hover:text-white transition-colors" to="/videos" data-testid="footer-link-videos">Learning Videos</Link></li>
+          <li><Link className="hover:text-white transition-colors" to="/results" data-testid="footer-link-results">Check Results</Link></li>
           <li><Link className="hover:text-white transition-colors" to="/parent-partnership" data-testid="footer-link-parent-partnership">Parent Partnership</Link></li>
           <li><Link className="hover:text-white transition-colors" to="/faq" data-testid="footer-link-faq">FAQ</Link></li>
           <li><Link className="hover:text-white transition-colors" to="/contact" data-testid="footer-link-contact">Contact Us</Link></li>
